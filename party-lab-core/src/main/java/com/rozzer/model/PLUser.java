@@ -10,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class User extends AbstractSaved {
+public class PLUser extends AbstractSaved {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -20,10 +20,10 @@ public class User extends AbstractSaved {
     private Role role;
 
 
-    public User() {
+    public PLUser() {
     }
 
-    public User(String name) {
+    public PLUser(String name) {
         this.name = name;
     }
 

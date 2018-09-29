@@ -14,17 +14,17 @@ public class UserProject extends AbstractSaved {
     private String name;
 
     @ManyToMany
-    private User user;
+    private PLUser user;
     @ManyToMany
     private Project project;
 
     private String repo;
 
-    public User getUser() {
+    public PLUser getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(PLUser user) {
         this.user = user;
     }
 
