@@ -7,10 +7,11 @@ import com.rozzer.model.Test;
 import com.rozzer.spring.repositories.TestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Repository
+@Service
 public class TestManager implements Manager<Test> {
 
     private TestRepository repository;

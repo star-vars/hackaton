@@ -6,9 +6,11 @@ import com.rozzer.manager.Manager;
 import com.rozzer.model.UserProject;
 import com.rozzer.spring.repositories.UserProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class UserProjectManager implements Manager<UserProject> {
 
     private UserProjectRepository repository;
