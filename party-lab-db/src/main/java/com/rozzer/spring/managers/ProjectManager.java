@@ -6,7 +6,6 @@ import com.rozzer.manager.Manager;
 import com.rozzer.model.Project;
 import com.rozzer.spring.repositories.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

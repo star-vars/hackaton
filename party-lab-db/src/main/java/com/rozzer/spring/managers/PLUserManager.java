@@ -6,11 +6,11 @@ import com.rozzer.manager.Manager;
 import com.rozzer.model.PLUser;
 import com.rozzer.spring.repositories.PLUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Repository
+@Service
 public class PLUserManager implements Manager<PLUser> {
 
     private PLUserRepository repository;
