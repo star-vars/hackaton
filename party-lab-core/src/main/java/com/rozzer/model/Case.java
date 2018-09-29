@@ -1,6 +1,7 @@
 package com.rozzer.model;
 
 import com.rozzer.common.AbstractSaved;
+import com.rozzer.common.Type;
 import org.json.simple.JSONObject;
 
 import javax.persistence.Entity;
@@ -8,6 +9,7 @@ import javax.persistence.Entity;
 @Entity(name = "cases")
 public class Case extends AbstractSaved {
 
+    private Type type;
     private JSONObject caseBody;
 
     public Case() {

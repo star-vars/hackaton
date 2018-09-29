@@ -47,16 +47,24 @@ public class Project extends AbstractSaved {
         this.themes = themes;
     }
 
+    public List<Case> getCases() {
+        return cases;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public PLUser getCustomer() {
+        return customer;
+    }
+
     public String getRepo() {
         return repo;
     }
 
     public void setRepo(String repo) {
         this.repo = repo;
-    }
-
-    public PLUser getCustomer() {
-        return customer;
     }
 
     public void setCustomer(PLUser customer) {
