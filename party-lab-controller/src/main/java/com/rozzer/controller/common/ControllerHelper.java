@@ -6,7 +6,13 @@ import com.rozzer.manager.Manager;
 
 public class ControllerHelper {
 
-    public static  <T extends AbstractSaved> Manager<T> manager(Class<T> clazz){
+    public static <T extends AbstractSaved> Manager<T> manager(Class<T> clazz) {
         return CoreObjectManager.getInstance().getManager(clazz);
+    }
+
+
+    public static <T extends AbstractSaved, U extends Manager<T>> U manager(
+            Class<T> clazz, Class<U> manager) {
+        return manager.cast(CoreObjectManager.getInstance().getManager(clazz));
     }
 }
