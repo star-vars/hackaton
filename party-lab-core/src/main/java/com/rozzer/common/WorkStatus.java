@@ -1,4 +1,4 @@
-package com.rozzer.model;
+package com.rozzer.common;
 
 public enum WorkStatus {
 

@@ -18,11 +18,6 @@ public class Theme extends AbstractSaved {
         super(name);
     }
 
-    @Override
-    public void save() {
-
-    }
-
     public String getDescription() {
         return description;
     }

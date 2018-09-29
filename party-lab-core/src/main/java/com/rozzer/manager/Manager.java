@@ -7,8 +7,8 @@ import java.util.Optional;
 
 public interface Manager<T extends Saved> {
     List<T> getAll();
-    void save(T book);
-    void delete(T book);
+    void save(T saved);
+    void delete(T saved);
     Optional<T> getById(Long id);
     T create();
 }

@@ -1,12 +1,11 @@
 package com.rozzer.spring.managers;
 
 import com.google.common.collect.Lists;
+import com.rozzer.common.WorkStatus;
 import com.rozzer.manager.CoreObjectManager;
-import com.rozzer.manager.Manager;
 import com.rozzer.manager.UserProjectManager;
 import com.rozzer.model.PLUser;
 import com.rozzer.model.UserProject;
-import com.rozzer.model.WorkStatus;
 import com.rozzer.spring.repositories.UserProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

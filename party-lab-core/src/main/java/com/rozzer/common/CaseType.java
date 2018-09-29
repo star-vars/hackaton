@@ -1,11 +1,11 @@
 package com.rozzer.common;
 
-public enum Type {
+public enum CaseType {
     UNIT_TEST("unit_test"), USE_CASE("use_case"), CODE_STYLE("code_style");
 
     private String type;
 
-    Type(String type) {
+    CaseType(String type) {
         this.type = type;
     }
 

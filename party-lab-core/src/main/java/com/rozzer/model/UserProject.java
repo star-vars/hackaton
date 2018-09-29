@@ -1,6 +1,7 @@
 package com.rozzer.model;
 
 import com.rozzer.common.AbstractSaved;
+import com.rozzer.common.WorkStatus;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -57,11 +58,6 @@ public class UserProject extends AbstractSaved {
 
     public void setRepoUrl(String repoUrl) {
         this.repoUrl = repoUrl;
-    }
-
-    @Override
-    public void save() {
-
     }
 
     public WorkStatus getStatus() {

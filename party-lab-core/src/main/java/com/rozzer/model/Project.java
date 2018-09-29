@@ -34,11 +34,6 @@ public class Project extends AbstractSaved {
         super(name);
     }
 
-    @Override
-    public void save() {
-
-    }
-
     public Set<Theme> getThemes() {
         return themes;
     }

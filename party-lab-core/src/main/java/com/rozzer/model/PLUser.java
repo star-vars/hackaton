@@ -43,8 +43,4 @@ public class PLUser extends AbstractSaved {
         this.login = login;
     }
 
-    @Override
-    public void save() {
-
-    }
 }

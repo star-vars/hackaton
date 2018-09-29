@@ -1,8 +1,8 @@
 package com.rozzer.manager;
 
+import com.rozzer.common.WorkStatus;
 import com.rozzer.model.PLUser;
 import com.rozzer.model.UserProject;
-import com.rozzer.model.WorkStatus;
 
 import java.util.List;
 

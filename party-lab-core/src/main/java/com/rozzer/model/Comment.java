@@ -21,11 +21,6 @@ public class Comment extends AbstractSaved {
         super(name);
     }
 
-    @Override
-    public void save() {
-
-    }
-
     public PLUser getUser() {
         return user;
     }
