@@ -116,6 +116,7 @@ public class Application {
     private Project newProject(String name, Set<PLUser> plUsers, Set<Comment> comments, Theme theme) {
         Project someProject = CoreObjectManager.getInstance().getManager(Project.class).create();
         someProject.setName(name);
+        someProject.setSpecification("Something specification");
 
         for (int i = 0; i <= plUsers.size()-2; i++) {
             PLUser user = plUsers.stream().findAny().get();

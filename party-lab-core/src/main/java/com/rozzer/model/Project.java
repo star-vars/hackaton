@@ -24,6 +24,7 @@ public class Project extends AbstractSaved {
     private String repoUrl;
     @OneToMany(fetch = FetchType.LAZY)
     private Set<PLUser> likers = Sets.newHashSet();
+    private String specification;
 
     public Project() {
         super();
@@ -75,5 +76,13 @@ public class Project extends AbstractSaved {
 
     public Set<PLUser> getLikers() {
         return likers;
+    }
+
+    public String getSpecification() {
+        return specification;
+    }
+
+    public void setSpecification(String specification) {
+        this.specification = specification;
     }
 }
