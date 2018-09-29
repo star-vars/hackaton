@@ -3,9 +3,14 @@ package com.rozzer.controller;
 import com.rozzer.controller.common.Controller;
 import com.rozzer.controller.oauth.SessionData;
 import com.rozzer.model.Project;
+import org.eclipse.egit.github.core.Repository;
+import org.eclipse.egit.github.core.RepositoryContents;
+import org.eclipse.egit.github.core.service.ContentsService;
+import org.eclipse.egit.github.core.service.RepositoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 import static com.rozzer.controller.common.ControllerHelper.manager;
@@ -38,8 +43,17 @@ public class ProjectController implements Controller<Project> {
     @Override
     @RequestMapping(method = RequestMethod.PUT)
     public void update(Project object) {
-
-        manager(Project.class).save(object);
+        try {
+            RepositoryService repositoryService = new RepositoryService();
+            Repository repository = repositoryService.getRepository(sessionData.getUser().getLogin(), object.getRepo());
+            if (repository == null) {
+                repository = repositoryService.createRepository(new Repository().setName(object.getRepo()));
+            }
+            object.setRepoUrl(repository.getUrl());
+            manager(Project.class).save(object);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
