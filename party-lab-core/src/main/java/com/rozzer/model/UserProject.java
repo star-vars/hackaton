@@ -3,14 +3,14 @@ package com.rozzer.model;
 import com.rozzer.common.AbstractSaved;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 @Entity(name = "user_projects")
 public class UserProject extends AbstractSaved {
 
-    @ManyToMany
+    @OneToOne
     private PLUser user;
-    @ManyToMany
+    @OneToOne
     private Project project;
 
     private String repo;
