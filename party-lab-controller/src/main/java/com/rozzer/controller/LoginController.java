@@ -13,12 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 
-import java.util.Optional;
-
 import static com.rozzer.controller.common.ControllerHelper.manager;
 
 @RestController
-@RequestMapping(value = "/login")
+@RequestMapping(value = "/logged")
 public class LoginController {
 
     @Autowired
@@ -52,7 +50,7 @@ public class LoginController {
             sessionData.setUser(plUser);
             return "Logged in to gh, login " + login + " email " + email;
         } else {
-            return "No login data";
+            return "Already logged in, login " + sessionData.getUser().getName() + " email " + sessionData.getUser().getMail() ;
         }
     }
 
