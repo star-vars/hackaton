@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import java.util.List;
@@ -31,9 +32,9 @@ public class LoginController {
     private SessionDataImpl sessionData;
 
     @RequestMapping(value = "authorized")
-    public String authorized(@RequestParam("code") final String code,
+    public void authorized(@RequestParam("code") final String code,
                              @RequestParam("state") final long state,
-                             final HttpSession session) throws Exception {
+                             final HttpSession session, HttpServletResponse response) throws Exception {
         if (sessionData.getUser() == null) {
             long sessionState = (long) session.getAttribute("state");
             if (state != sessionState) {
@@ -61,10 +62,8 @@ public class LoginController {
                 return user;
             });
             sessionData.setUser(plUser);
-            return "Logged in to gh, login " + login + " email " + finalEmail;
-        } else {
-            return "Already logged in, login " + sessionData.getUser().getLogin() + " email " + sessionData.getUser().getMail() ;
         }
+        response.sendRedirect("/");
     }
 
 }
