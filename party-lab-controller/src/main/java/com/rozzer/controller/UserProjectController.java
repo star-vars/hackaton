@@ -1,5 +1,6 @@
 package com.rozzer.controller;
 
+import com.google.gson.Gson;
 import com.rozzer.checks.CheckManager;
 import com.rozzer.checks.result.CheckResult;
 import com.rozzer.common.WorkStatus;
@@ -38,8 +39,9 @@ public class UserProjectController implements EntityController<UserProject> {
     }
 
     @RequestMapping(value = "/all/{page}", method = RequestMethod.GET)
-    public List<UserProject> getAllByPage(@PathVariable String page) {
-        return manager(UserProject.class).getAllByPage(Integer.getInteger(page));
+    public String getAllByPage(@PathVariable String page) {
+        return "{\"size\": " + manager(Project.class).getAll().size() + ", \"userprojects\" :" +
+                new Gson().toJson(manager(Project.class).getAllByPage(Integer.valueOf(page))) +"}";
     }
 
     @RequestMapping(value = "pick", method = RequestMethod.POST)
@@ -108,10 +110,10 @@ public class UserProjectController implements EntityController<UserProject> {
         }
     }
 
-    @GetMapping("/theme")
-    public List<UserProject> getUserProjectByThemes(@RequestParam String s) {
-        List<Theme> themeList = CoreObjectManager.getInstance().getManager(Theme.class).getByName(s);
-        Theme theme = themeList.stream().findFirst().orElse(new Theme(s));
-        return manager(UserProject.class, UserProjectManager.class).findByTheme(theme);
+    @GetMapping("/theme{theme}")
+    public List<UserProject> getUserProjectByThemes(@RequestParam String theme) {
+        List<Theme> themeList = CoreObjectManager.getInstance().getManager(Theme.class).getByName(theme);
+        Theme aTheme = themeList.stream().findFirst().orElse(new Theme(theme));
+        return manager(UserProject.class, UserProjectManager.class).findByTheme(aTheme);
     }
 }

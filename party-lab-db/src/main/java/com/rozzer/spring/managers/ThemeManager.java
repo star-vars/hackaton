@@ -39,6 +39,7 @@ public class ThemeManager implements Manager<Theme> {
 
     @Override
     public void save(Theme saved) {
+        repository.findAllByName(saved.getName());
         repository.save(saved);
     }
 
