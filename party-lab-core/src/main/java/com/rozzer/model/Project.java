@@ -15,6 +15,14 @@ public class Project extends AbstractSaved {
     private Set<Theme> themes = Sets.newHashSet();
     private PLUser customer;
 
+    public Project() {
+        super();
+    }
+
+    public Project(String name) {
+        super(name);
+    }
+
     @Override
     public void save() {
 
