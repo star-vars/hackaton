@@ -11,6 +11,13 @@ public class Theme extends AbstractSaved {
 
     private String description;
 
+    public Theme() {
+    }
+
+    public Theme(String name) {
+        super(name);
+    }
+
     @Override
     public void save() {
 

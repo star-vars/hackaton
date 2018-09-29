@@ -14,6 +14,13 @@ public class Comment extends AbstractSaved {
     private String text;
     private Date dateTime;
 
+    public Comment() {
+    }
+
+    public Comment(String name) {
+        super(name);
+    }
+
     @Override
     public void save() {
 

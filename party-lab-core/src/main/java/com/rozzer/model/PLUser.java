@@ -11,7 +11,12 @@ public class PLUser extends AbstractSaved {
     private String mail;
     private Role role;
 
+    public PLUser() {
+    }
 
+    public PLUser(String name) {
+        super(name);
+    }
 
     public Role getRole() {
         return role;

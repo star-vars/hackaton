@@ -15,6 +15,13 @@ public class UserProject extends AbstractSaved {
 
     private String repo;
 
+    public UserProject() {
+    }
+
+    public UserProject(String name) {
+        super(name);
+    }
+
     public PLUser getUser() {
         return user;
     }

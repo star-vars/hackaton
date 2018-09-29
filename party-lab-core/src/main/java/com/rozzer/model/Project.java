@@ -13,6 +13,7 @@ import java.util.Set;
 
 @Entity(name = "projects")
 public class Project extends AbstractSaved {
+
     @ManyToOne
     private List<Case> cases = Lists.newArrayList();
     @ManyToOne

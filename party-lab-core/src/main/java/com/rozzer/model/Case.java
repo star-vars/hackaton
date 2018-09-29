@@ -11,6 +11,13 @@ public class Case extends AbstractSaved {
 
     private JSONObject caseBody;
 
+    public Case() {
+    }
+
+    public Case(String name) {
+        super(name);
+    }
+
     @Override
     public void save() {
 
