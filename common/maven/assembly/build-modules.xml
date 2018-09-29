@@ -1,0 +1,31 @@
+<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
+    <id>build-modules</id>
+    <formats>
+        <format>zip</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <moduleSets>
+        <moduleSet>
+            <useAllReactorProjects>true</useAllReactorProjects>
+            <includeSubModules>true</includeSubModules>
+            <binaries>
+                <outputDirectory>/modules/</outputDirectory>
+                <includeDependencies>false</includeDependencies>
+                <outputFileNameMapping>${module.artifactId}_${module.version}.${module.extension}</outputFileNameMapping>
+                <unpack>false</unpack>
+            </binaries>
+        </moduleSet>
+    </moduleSets>
+    <files>
+        <file>
+            <source>./scripts/run.cmd</source>
+            <outputDirectory>/</outputDirectory>
+        </file>
+        <file>
+            <source>../party-lab-aggregator/target/party-lab-aggregator.jar</source>
+            <outputDirectory>/lib/</outputDirectory>
+        </file>
+    </files>
+</assembly>
