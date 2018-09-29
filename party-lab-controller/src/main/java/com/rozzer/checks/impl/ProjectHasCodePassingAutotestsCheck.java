@@ -7,10 +7,9 @@ import com.rozzer.checks.result.ComplexCheckResult;
 import com.rozzer.checks.result.SimpleCheckResult;
 import com.rozzer.model.Case;
 import com.rozzer.session.SessionData;
-import com.rozzer.validate.Report;
+import com.rozzer.validate.Pair;
 import com.rozzer.validate.Reporter;
 import com.rozzer.validate.Status;
-import javafx.util.Pair;
 
 import java.util.List;
 
@@ -22,7 +21,7 @@ public class ProjectHasCodePassingAutotestsCheck extends ComplexCheck {
         List<Pair<Status, Case>> report = Reporter.getInstance().checkProject(getProject()).getReport();
         ComplexCheckResult checkResult = new ComplexCheckResult(report.size());
         report.forEach(statusCasePair -> {
-            if (statusCasePair.getKey().equals(Status.SUCCESS)) {
+            if (statusCasePair.getElement0().equals(Status.SUCCESS)) {
                 checkResult.getResults().add(SimpleCheckResult.PASSED);
             } else {
                 checkResult.getResults().add(SimpleCheckResult.FAILED);
