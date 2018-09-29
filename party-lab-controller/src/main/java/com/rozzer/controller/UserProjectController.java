@@ -2,7 +2,6 @@ package com.rozzer.controller;
 
 import com.rozzer.common.WorkStatus;
 import com.rozzer.controller.common.EntityController;
-import com.rozzer.controller.oauth.SessionData;
 import com.rozzer.manager.UserProjectManager;
 import com.rozzer.model.Project;
 import com.rozzer.model.UserProject;
