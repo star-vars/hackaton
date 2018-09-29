@@ -4,10 +4,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.rozzer.common.AbstractSaved;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 
@@ -25,6 +22,8 @@ public class Project extends AbstractSaved {
     private PLUser customer;
     private String repo;
     private String repoUrl;
+    @OneToMany(fetch = FetchType.LAZY)
+    private Set<PLUser> likers = Sets.newHashSet();
 
     public Project() {
         super();
@@ -72,5 +71,9 @@ public class Project extends AbstractSaved {
 
     public void setRepoUrl(String repoUrl) {
         this.repoUrl = repoUrl;
+    }
+
+    public Set<PLUser> getLikers() {
+        return likers;
     }
 }

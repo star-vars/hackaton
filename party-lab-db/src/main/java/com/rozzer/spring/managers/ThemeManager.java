@@ -23,11 +23,6 @@ public class ThemeManager implements Manager<Theme> {
     }
 
     private void init() {
-        this.repository.save(new Theme("Jack"));
-        this.repository.save(new Theme("Chloe"));
-        this.repository.save(new Theme("Kim"));
-        this.repository.save(new Theme("David"));
-        this.repository.save(new Theme("Michelle"));
         CoreObjectManager.getManagerFactory().register(Theme.class, this);
     }
 

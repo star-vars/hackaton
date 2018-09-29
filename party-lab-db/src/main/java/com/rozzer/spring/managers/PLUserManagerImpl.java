@@ -23,11 +23,6 @@ public class PLUserManagerImpl implements PLUserManager {
     }
 
     private void init() {
-        this.repository.save(new PLUser("Jack"));
-        this.repository.save(new PLUser("Chloe"));
-        this.repository.save(new PLUser("Kim"));
-        this.repository.save(new PLUser("David"));
-        this.repository.save(new PLUser("Michelle"));
         CoreObjectManager.getManagerFactory().register(PLUser.class, this);
     }
 

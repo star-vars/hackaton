@@ -23,11 +23,6 @@ public class ProjectManager implements Manager<Project> {
     }
 
     private void init() {
-        this.repository.save(new Project("Jack"));
-        this.repository.save(new Project("Chloe"));
-        this.repository.save(new Project("Kim"));
-        this.repository.save(new Project("David"));
-        this.repository.save(new Project("Michelle"));
         CoreObjectManager.getManagerFactory().register(Project.class, this);
     }
 

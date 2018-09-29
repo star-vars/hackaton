@@ -31,7 +31,6 @@ public abstract class AbstractSaved implements Saved {
         this.id = id;
     }
 
-    @Nonnull
     @Override
     public String getName() {
         return name;

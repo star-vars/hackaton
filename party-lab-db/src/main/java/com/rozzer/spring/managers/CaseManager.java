@@ -23,11 +23,6 @@ public class CaseManager implements Manager<Case> {
     }
 
     private void init() {
-        this.repository.save(new Case("Jack"));
-        this.repository.save(new Case("Chloe"));
-        this.repository.save(new Case("Kim"));
-        this.repository.save(new Case("David"));
-        this.repository.save(new Case("Michelle"));
         CoreObjectManager.getManagerFactory().register(Case.class, this);
     }
 
