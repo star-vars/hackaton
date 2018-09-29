@@ -13,6 +13,7 @@ public class SessionDataImpl implements SessionData {
 
     private PLUser user;
     private GitHubClient ghClient;
+    private long state;
 
     @Override
     public PLUser getUser() {
@@ -30,5 +31,14 @@ public class SessionDataImpl implements SessionData {
 
     public void setGhClient(GitHubClient ghClient) {
         this.ghClient = ghClient;
+    }
+
+    @Override
+    public long getState() {
+        return state;
+    }
+
+    public void setState(long state) {
+        this.state = state;
     }
 }

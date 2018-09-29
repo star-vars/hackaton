@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html >
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <style>
@@ -8,7 +9,7 @@
     align-items: center;
     height:100%;
   }
-  button{
+  a{
     height:480px !important;
     width: 640px !important;
   }
@@ -18,9 +19,9 @@
 </head>
 <body>
 <div class="container">
-  <button type="button" class="col-md-2 col-centered text-center btn btn-primary btn-lg">
-    <font size="20">Login to GitHub</font>
-  </button>
+    <a th:href="${authorizeURL}" class="col-md-2 col-centered text-center btn btn-primary btn-lg" role="button">
+      <font size="20">Login to GitHub</font>
+    </a>
 </div>
 </body>
 </html>
