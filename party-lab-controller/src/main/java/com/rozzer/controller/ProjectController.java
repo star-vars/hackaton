@@ -2,9 +2,7 @@ package com.rozzer.controller;
 
 import com.rozzer.controller.common.Controller;
 import com.rozzer.model.Project;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -43,4 +41,12 @@ public class ProjectController implements Controller<Project> {
     public void delete(Project object) {
         manager(Project.class).delete(object);
     }
+
+    @GetMapping("/themes")
+    public List<Project> getProjectByThemes(@RequestParam String themes) {
+//        Iterable<String> themNames = Splitter.on(',').trimResults().split(themes);
+//        manager(Project.class).getByThems()
+        throw new UnsupportedOperationException("not implemented yet");
+    }
+
 }

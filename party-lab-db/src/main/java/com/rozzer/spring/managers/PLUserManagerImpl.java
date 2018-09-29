@@ -2,7 +2,7 @@ package com.rozzer.spring.managers;
 
 import com.google.common.collect.Lists;
 import com.rozzer.manager.CoreObjectManager;
-import com.rozzer.manager.Manager;
+import com.rozzer.manager.PLUserManager;
 import com.rozzer.model.PLUser;
 import com.rozzer.spring.repositories.PLUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +11,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class PLUserManager implements Manager<PLUser> {
+public class PLUserManagerImpl implements PLUserManager {
 
     private PLUserRepository repository;
 
     @Autowired
-    public PLUserManager(PLUserRepository developerRepository) {
+    public PLUserManagerImpl(PLUserRepository developerRepository) {
         this.repository = developerRepository;
         init();
     }
@@ -48,7 +48,7 @@ public class PLUserManager implements Manager<PLUser> {
 
     @Override
     public PLUser getById(Long id) {
-        return repository.findById(id).get();
+        return repository.findById(id).orElse(null);
     }
 
     @Override
@@ -56,5 +56,10 @@ public class PLUserManager implements Manager<PLUser> {
         PLUser developer = new PLUser();
         repository.save(developer);
         return developer;
+    }
+
+    @Override
+    public PLUser getByNameAndEmail(String name, String email) {
+        return repository.getPLUserByNameAndMail(name, email);
     }
 }
