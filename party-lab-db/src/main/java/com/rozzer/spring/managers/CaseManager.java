@@ -7,6 +7,7 @@ import com.rozzer.model.Case;
 import com.rozzer.spring.repositories.CaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,6 +31,11 @@ public class CaseManager implements Manager<Case> {
     @Override
     public List<Case> getAll() {
         return Lists.newArrayList(repository.findAll());
+    }
+
+    @Override
+    public List<Case> getAllByPage(int page){
+        throw new NotImplementedException();
     }
 
     @Override

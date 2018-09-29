@@ -7,6 +7,7 @@ import java.util.Optional;
 
 public interface Manager<T extends Saved> {
     List<T> getAll();
+    List<T> getAllByPage(int page);
     void save(T saved);
     void delete(T saved);
     Optional<T> getById(Long id);

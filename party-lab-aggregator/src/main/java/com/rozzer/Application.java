@@ -58,6 +58,13 @@ public class Application {
         plUsers.add(newUser("Jack", "JJ", Role.USER, "jack@mail.com"));
         plUsers.add(newUser("Kim", "KK", Role.USER, "kim@mail.com"));
         plUsers.add(newUser("Michelle", "MM", Role.ADMIN, "michelle@mail.com"));
+        plUsers.add(newUser("Romen", "RR", Role.ADMIN, "roman@mail.com"));
+        plUsers.add(newUser("Rich", "RR", Role.ADMIN, "rich@mail.com"));
+        plUsers.add(newUser("Kek", "kk", Role.ADMIN, "kek@mail.com"));
+        plUsers.add(newUser("Sone", "SS", Role.ADMIN, "some@mail.com"));
+        plUsers.add(newUser("ggg", "GG", Role.ADMIN, "ggg@mail.com"));
+        plUsers.add(newUser("hhh", "HH", Role.ADMIN, "hhh@mail.com"));
+        plUsers.add(newUser("qqq", "QQ", Role.ADMIN, "qqq@mail.com"));
 
         Set<Theme> themes = Sets.newHashSet();
         themes.add(newTheme("Spring", "Java language framework"));
@@ -85,6 +92,10 @@ public class Application {
         projects.add(newProject("Some C# Project", plUsers, comments, themes.stream().filter(theme -> theme.getName().equals("Java")).findAny().get()));
         projects.add(newProject("Some C++ Project", plUsers, comments, themes.stream().filter(theme -> theme.getName().equals("Java")).findAny().get() ));
         projects.add(newProject("Some Java Project", plUsers, comments, themes.stream().filter(theme -> theme.getName().equals("Java")).findAny().get() ));
+        projects.add(newProject("Some C Project", plUsers, comments, themes.stream().filter(theme -> theme.getName().equals("Java")).findAny().get() ));
+        projects.add(newProject("Some JS Project", plUsers, comments, themes.stream().filter(theme -> theme.getName().equals("Java")).findAny().get() ));
+        projects.add(newProject("Some .NET Project", plUsers, comments, themes.stream().filter(theme -> theme.getName().equals("Java")).findAny().get() ));
+        projects.add(newProject("Some JAVA2 Project", plUsers, comments, themes.stream().filter(theme -> theme.getName().equals("Java")).findAny().get() ));
 
         newUserProject(projects.stream().findAny().get(), plUsers.stream().findAny().get(), "hackaton", WorkStatus.STARTED);
         newUserProject(projects.stream().findAny().get(), plUsers.stream().findAny().get(), "hackaton", WorkStatus.COMPLETED);

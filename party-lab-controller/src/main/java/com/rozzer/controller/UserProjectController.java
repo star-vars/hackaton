@@ -38,6 +38,11 @@ public class UserProjectController implements EntityController<UserProject> {
         return manager(UserProject.class).getAll();
     }
 
+    @RequestMapping(value = "/all/{page}", method = RequestMethod.GET)
+    public List<UserProject> getAllByPage(@PathVariable String page) {
+        return manager(UserProject.class).getAllByPage(Integer.getInteger(page));
+    }
+
     @RequestMapping(value = "pick", method = RequestMethod.POST)
     public UserProject createFromProject(Project project) {
         try {

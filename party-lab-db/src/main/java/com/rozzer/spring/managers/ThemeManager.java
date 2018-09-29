@@ -7,6 +7,7 @@ import com.rozzer.model.Theme;
 import com.rozzer.spring.repositories.ThemeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,6 +31,10 @@ public class ThemeManager implements Manager<Theme> {
     @Override
     public List<Theme> getAll() {
         return Lists.newArrayList(repository.findAll());
+    }
+
+    public List<Theme> getAllByPage(int page){
+        throw new NotImplementedException();
     }
 
     @Override

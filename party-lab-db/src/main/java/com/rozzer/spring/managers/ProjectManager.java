@@ -6,6 +6,7 @@ import com.rozzer.manager.Manager;
 import com.rozzer.model.Project;
 import com.rozzer.spring.repositories.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,6 +31,10 @@ public class ProjectManager implements Manager<Project> {
     @Override
     public List<Project> getAll() {
         return Lists.newArrayList(repository.findAll());
+    }
+
+    public List<Project> getAllByPage(int page){
+        return Lists.newArrayList(repository.findAll(new PageRequest(page, 4)));
     }
 
     @Override

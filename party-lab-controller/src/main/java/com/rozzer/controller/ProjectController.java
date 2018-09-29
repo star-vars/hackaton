@@ -27,6 +27,11 @@ public class ProjectController implements EntityController<Project> {
         return manager(Project.class).getAll();
     }
 
+    @RequestMapping(value = "/all/{page}", method = RequestMethod.GET)
+    public List<Project> getAllByPage(@PathVariable String page) {
+        return manager(Project.class).getAllByPage(Integer.getInteger(page));
+    }
+
     @Override
     @RequestMapping(method = RequestMethod.POST)
     public Project create() {
