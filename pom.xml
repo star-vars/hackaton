@@ -7,6 +7,12 @@
     <properties>
         <spring.boot.version>2.0.5.RELEASE</spring.boot.version>
         <spring.version>5.0.5.RELEASE</spring.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <postgresql.version>42.0.0</postgresql.version>
+        <spring.boot.starter.web.version>LATEST</spring.boot.starter.web.version>
+        <spring.boot.starter.data.rest.version>LATEST</spring.boot.starter.data.rest.version>
+        <spring.boot.starter.data.jpa.version>LATEST</spring.boot.starter.data.jpa.version>
     </properties>
     <packaging>pom</packaging>
 

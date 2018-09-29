@@ -1,3 +1,9 @@
 /.idea
 /target
 *.iml
+
+party-lab-aggregator/target/
+party-lab-controller/target/
+party-lab-core/target/
+party-lab-db/target/
+party-lab-ui/node/

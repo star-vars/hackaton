@@ -25,14 +25,6 @@ public class CoreObjectManager {
     private CoreObjectManager() {
     }
 
-    public void setManagerFactory(ManagerFactory factory) {
-        this.managerFactory = factory;
-    }
-
-    public ManagerFactory getManagerFactory() {
-        return managerFactory;
-    }
-
     public <T extends Saved> Manager<T>  getManager(Class<T> clazz){
         return managerFactory.getManager(clazz);
     }
