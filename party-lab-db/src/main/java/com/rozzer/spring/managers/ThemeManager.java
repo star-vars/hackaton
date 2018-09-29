@@ -6,11 +6,11 @@ import com.rozzer.manager.Manager;
 import com.rozzer.model.Theme;
 import com.rozzer.spring.repositories.ThemeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Repository
+@Service
 public class ThemeManager implements Manager<Theme> {
 
     private ThemeRepository repository;

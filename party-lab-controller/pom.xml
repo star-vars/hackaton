@@ -18,7 +18,7 @@
         <dependency>
             <groupId>party-lab</groupId>
             <artifactId>party-lab-core</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -59,8 +59,6 @@
             <version>2.1.5</version>
         </dependency>
     </dependencies>
-
-
 
 
 </project>
