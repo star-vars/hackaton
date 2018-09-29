@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Optional;
 
 import static com.rozzer.controller.common.ControllerHelper.manager;
 
@@ -29,8 +28,8 @@ public class CaseController implements Controller<Case> {
 
     @Override
     @RequestMapping(method = RequestMethod.GET)
-    public Optional<Case> read(String id) {
-        return manager(Case.class).getById(new Long(id));
+    public Case read(String id) {
+        return manager(Case.class).getById(new Long(id)).orElse(new Case());
     }
 
     @Override

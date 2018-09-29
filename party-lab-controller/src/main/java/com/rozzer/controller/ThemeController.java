@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Optional;
 
 import static com.rozzer.controller.common.ControllerHelper.manager;
 
@@ -30,8 +29,8 @@ public class ThemeController implements Controller<Theme> {
 
     @Override
     @RequestMapping(method = RequestMethod.GET)
-    public Optional<Theme> read(String id) {
-        return manager(Theme.class).getById(new Long(id));
+    public Theme read(String id) {
+        return manager(Theme.class).getById(new Long(id)).orElse(new Theme());
     }
 
     @Override

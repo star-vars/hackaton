@@ -5,7 +5,6 @@ import com.rozzer.model.Project;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 import static com.rozzer.controller.common.ControllerHelper.manager;
 
@@ -27,8 +26,8 @@ public class ProjectController implements Controller<Project> {
 
     @Override
     @RequestMapping(method = RequestMethod.GET)
-    public Optional<Project> read(String id) {
-        return manager(Project.class).getById(new Long(id));
+    public Project read(String id) {
+        return manager(Project.class).getById(new Long(id)).orElse(new Project());
     }
 
     @Override

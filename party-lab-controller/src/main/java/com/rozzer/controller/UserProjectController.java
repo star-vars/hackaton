@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
 
 import static com.rozzer.controller.common.ControllerHelper.manager;
 
@@ -54,8 +53,8 @@ public class UserProjectController implements Controller<UserProject> {
 
     @Override
     @RequestMapping(method = RequestMethod.GET)
-    public Optional<UserProject> read(String id) {
-        return manager(UserProject.class).getById(new Long(id));
+    public UserProject read(String id) {
+        return manager(UserProject.class).getById(new Long(id)).orElse(new UserProject());
     }
 
     @Override

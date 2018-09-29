@@ -4,7 +4,10 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.rozzer.common.AbstractSaved;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import java.util.List;
 import java.util.Set;
 
@@ -17,7 +20,8 @@ public class Project extends AbstractSaved {
     private List<Comment> comments = Lists.newArrayList();
     @OneToMany
     private Set<Theme> themes = Sets.newHashSet();
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name="customer_id")
     private PLUser customer;
 
     public Project() {
