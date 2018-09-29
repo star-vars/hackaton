@@ -19,12 +19,6 @@
             <groupId>party-lab</groupId>
             <artifactId>party-lab-core</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>party-lab</groupId>
-            <artifactId>party-lab-core</artifactId>
-            <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
