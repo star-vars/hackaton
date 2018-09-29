@@ -4,6 +4,7 @@ import com.google.common.collect.Maps;
 import com.rozzer.checks.impl.*;
 import com.rozzer.model.Theme;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.Optional;
 import static com.rozzer.controller.common.ControllerHelper.manager;
 
 @Configuration
+@DependsOn("themeManager")
 public class BasicChecksConfiguration implements CheckConfiguration {
 
     public static final long JAVA_THEME_ID = 1;
