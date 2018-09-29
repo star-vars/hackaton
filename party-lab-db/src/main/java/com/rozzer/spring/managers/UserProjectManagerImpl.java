@@ -64,4 +64,13 @@ public class UserProjectManagerImpl implements UserProjectManager {
     public List<UserProject> findByUserAndStatus(PLUser user, WorkStatus status) {
         return repository.findByUserAndStatus(user, status);
     }
+
+
+    @Override
+    public List<UserProject> findByUser(PLUser user) {
+        return repository.findByUser(user);
+    }
+
+
+
 }
