@@ -82,14 +82,14 @@ public class Application {
         comments.add(newComment(plUsers.stream().findAny().get(), "9 such code"));
 
         Set<Project> projects = Sets.newHashSet();
-        projects.add(newProject("Some C# Project", plUsers, comments, themes.stream().findAny().get()));
-        projects.add(newProject("Some C++ Project", plUsers, comments, themes.stream().findAny().get() ));
-        projects.add(newProject("Some Java Project", plUsers, comments, themes.stream().findAny().get() ));
+        projects.add(newProject("Some C# Project", plUsers, comments, themes.stream().filter(theme -> theme.getName().equals("Java")).findAny().get()));
+        projects.add(newProject("Some C++ Project", plUsers, comments, themes.stream().filter(theme -> theme.getName().equals("Java")).findAny().get() ));
+        projects.add(newProject("Some Java Project", plUsers, comments, themes.stream().filter(theme -> theme.getName().equals("Java")).findAny().get() ));
 
-        newUserProject(projects.stream().findAny().get(), plUsers.stream().findAny().get(), "https://github.com/star-vars/hackaton.git", WorkStatus.STARTED);
-        newUserProject(projects.stream().findAny().get(), plUsers.stream().findAny().get(), "https://github.com/star-vars/hackaton.git", WorkStatus.COMPLETED);
-        newUserProject(projects.stream().findAny().get(), plUsers.stream().findAny().get(), "https://github.com/star-vars/hackaton.git", WorkStatus.FAILED);
-        newUserProject(projects.stream().findAny().get(), plUsers.stream().findAny().get(), "https://github.com/star-vars/hackaton.git", WorkStatus.STARTED);
+        newUserProject(projects.stream().findAny().get(), plUsers.stream().findAny().get(), "hackaton", WorkStatus.STARTED);
+        newUserProject(projects.stream().findAny().get(), plUsers.stream().findAny().get(), "hackaton", WorkStatus.COMPLETED);
+        newUserProject(projects.stream().findAny().get(), plUsers.stream().findAny().get(), "hackaton", WorkStatus.FAILED);
+        newUserProject(projects.stream().findAny().get(), plUsers.stream().findAny().get(), "hackaton", WorkStatus.STARTED);
 
     }
 

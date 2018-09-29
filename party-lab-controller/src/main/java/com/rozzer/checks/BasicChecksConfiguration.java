@@ -17,8 +17,8 @@ import static com.rozzer.controller.common.ControllerHelper.manager;
 public class BasicChecksConfiguration implements CheckConfiguration {
 
     @Override
-    public Map<Theme, List<Class<? extends Check>>> getChecksByThemes() {
-        Map<Theme, List<Class<? extends Check>>> map = Maps.newHashMap();
+    public Map<String, List<Class<? extends Check>>> getChecksByThemes() {
+        Map<String, List<Class<? extends Check>>> map = Maps.newHashMap();
         List<Theme> themes = manager(Theme.class).getByName("Java");
         Theme theme;
         if (themes.size() == 0) {
@@ -34,7 +34,7 @@ public class BasicChecksConfiguration implements CheckConfiguration {
         javaChecks.add(ProjectHasTestCasesCheck.class);
         javaChecks.add(ProjectHasAutotestsByTestCasesCheck.class);
         javaChecks.add(ProjectHasCodePassingAutotestsCheck.class);
-        map.put(theme, javaChecks);
+        map.put(theme.getName(), javaChecks);
         return map;
     }
 }
