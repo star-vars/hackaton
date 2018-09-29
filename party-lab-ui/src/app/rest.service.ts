@@ -31,9 +31,14 @@ export class RestService {
     return this.http.get(this.endpoint + 'user?=' + id).pipe(
       map(this.extractData));
   }
-/*
+
   getTasks(): Observable<any> {
     return this.http.get(this.endpoint + 'project/all').pipe(
+      map(this.extractData));
+  }
+
+  getTasksByPage(page): Observable<any> {
+    return this.http.get(this.endpoint + 'project/all/' + page).pipe(
       map(this.extractData));
   }
 
@@ -41,7 +46,7 @@ export class RestService {
     return this.http.get(this.endpoint + 'project?=' + id).pipe(
       map(this.extractData));
   }
-
+/*
   addProduct (product): Observable<any> {
     console.log(product);
     return this.http.post<any>(this.endpoint + 'products', JSON.stringify(product), this.httpOptions).pipe(

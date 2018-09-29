@@ -4,17 +4,19 @@ export class Task{
   id: number;
   name: string;
   desc: string;
-  theme: Theme;
-  tags: string[];
+  tags: any[];
   demands: string[];
-  testCases: string[];
+  cases: any[];
   comments: string[];
   rating: number;
+  customer: any;
+  repo: string;
+  repoUrl: string;
+  likers: any[];
 
-  constructor( id:number, name: string, desc: string, theme?: Theme ){
+  constructor( id:number, name: string, desc: string ){
     this.id = id;
     this.name = name;
     this.desc = desc;
-    this.theme = theme;
   }
 }
