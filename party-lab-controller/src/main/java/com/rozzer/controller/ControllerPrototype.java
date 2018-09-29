@@ -32,7 +32,7 @@ public class ControllerPrototype {
         final long state = RANDOM.nextLong();
         httpSession.setAttribute("state", state);
 
-        return "<a href=\"https://github.com/login/oauth/authorize?client_id=" + clientId + "&scope=user,repo&redirect_uri=http://localhost:8080/login/authorized&state=" + state + "\">Click</a>";
+        return "<a href=\"https://github.com/login/oauth/authorize?client_id=" + clientId + "&scope=user,repo&redirect_uri=http://localhost:8080/logged/authorized&state=" + state + "\">Click</a>";
     }
 
     @RequestMapping(value = "/rozzer/lab/lab", method = RequestMethod.POST, produces = "application/json")
