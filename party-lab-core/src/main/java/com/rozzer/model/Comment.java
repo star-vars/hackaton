@@ -2,45 +2,44 @@ package com.rozzer.model;
 
 import com.rozzer.common.AbstractSaved;
 
-import javax.annotation.Nonnull;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import java.util.Date;
 
-@Entity
+@Entity(name = "comments")
 public class Comment extends AbstractSaved {
 
-
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id;
-    private String name;
+    @ManyToOne
+    private PLUser user;
+    private String text;
+    private Date dateTime;
 
     @Override
     public void save() {
 
     }
 
-    @Nonnull
-    @Override
-    public Long getId() {
-        return id;
+    public PLUser getUser() {
+        return user;
     }
 
-    @Override
-    public void setId(@Nonnull Long id) {
-        this.id = id;
+    public void setUser(PLUser user) {
+        this.user = user;
     }
 
-    @Nonnull
-    @Override
-    public String getName() {
-        return null;
+    public String getText() {
+        return text;
     }
 
-    @Override
-    public void setName(@Nonnull String name) {
+    public void setText(String text) {
+        this.text = text;
+    }
 
+    public Date getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(Date dateTime) {
+        this.dateTime = dateTime;
     }
 }
