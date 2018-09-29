@@ -18,7 +18,9 @@ public class Reporter {
         List<Case> cases = userProject.getProject().getCases();
         Report report = new Report();
         for (Case aCase : cases) {
-            TestEngineFactory.getEngine(aCase.getType()).checkCase(aCase);
+            report.addCase(
+                    TestEngineFactory.getEngine(aCase.getType()).checkCase(aCase),
+                    aCase);
         }
         return report;
     }
