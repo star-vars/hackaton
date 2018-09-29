@@ -1,11 +1,9 @@
 package com.rozzer.controller;
 
-import com.rozzer.controller.common.Controller;
+import com.rozzer.controller.common.EntityController;
 import com.rozzer.controller.oauth.SessionData;
 import com.rozzer.model.Project;
 import org.eclipse.egit.github.core.Repository;
-import org.eclipse.egit.github.core.RepositoryContents;
-import org.eclipse.egit.github.core.service.ContentsService;
 import org.eclipse.egit.github.core.service.RepositoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +15,7 @@ import static com.rozzer.controller.common.ControllerHelper.manager;
 
 @RestController
 @RequestMapping(value = "/project")
-public class ProjectController implements Controller<Project> {
+public class ProjectController implements EntityController<Project> {
 
     @Autowired
     private SessionData sessionData;

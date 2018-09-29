@@ -2,7 +2,7 @@ package com.rozzer.controller.common;
 
 import java.util.List;
 
-public interface Controller<T> {
+public interface EntityController<T> {
 
     List<T> getAll();
     T create();

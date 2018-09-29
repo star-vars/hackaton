@@ -1,6 +1,6 @@
 package com.rozzer.controller;
 
-import com.rozzer.controller.common.Controller;
+import com.rozzer.controller.common.EntityController;
 import com.rozzer.model.Theme;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,7 +12,7 @@ import static com.rozzer.controller.common.ControllerHelper.manager;
 
 @RestController
 @RequestMapping(value = "/theme")
-public class ThemeController implements Controller<Theme> {
+public class ThemeController implements EntityController<Theme> {
 
 
     @Override

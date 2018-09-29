@@ -1,7 +1,7 @@
 package com.rozzer.controller;
 
 import com.rozzer.common.WorkStatus;
-import com.rozzer.controller.common.Controller;
+import com.rozzer.controller.common.EntityController;
 import com.rozzer.controller.oauth.SessionData;
 import com.rozzer.manager.UserProjectManager;
 import com.rozzer.model.Project;
@@ -22,7 +22,7 @@ import static com.rozzer.controller.common.ControllerHelper.manager;
 
 @RequestMapping(value = "/userproject")
 @RestController
-public class UserProjectController implements Controller<UserProject> {
+public class UserProjectController implements EntityController<UserProject> {
 
     @Autowired
     private SessionData sessionData;
