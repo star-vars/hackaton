@@ -4,18 +4,17 @@ import com.rozzer.checks.CheckManager;
 import com.rozzer.checks.result.CheckResult;
 import com.rozzer.common.WorkStatus;
 import com.rozzer.controller.common.EntityController;
+import com.rozzer.manager.CoreObjectManager;
 import com.rozzer.manager.UserProjectManager;
 import com.rozzer.model.Project;
+import com.rozzer.model.Theme;
 import com.rozzer.model.UserProject;
 import com.rozzer.session.SessionData;
 import org.eclipse.egit.github.core.Repository;
 import org.eclipse.egit.github.core.RepositoryId;
 import org.eclipse.egit.github.core.service.RepositoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.*;
@@ -107,5 +106,12 @@ public class UserProjectController implements EntityController<UserProject> {
         } else {
             return Collections.emptyMap();
         }
+    }
+
+    @GetMapping("/theme")
+    public List<UserProject> getUserProjectByThemes(@RequestParam String s) {
+        List<Theme> themeList = CoreObjectManager.getInstance().getManager(Theme.class).getByName(s);
+        Theme theme = themeList.stream().findFirst().orElse(new Theme(s));
+        return manager(UserProject.class, UserProjectManager.class).findByTheme(theme);
     }
 }

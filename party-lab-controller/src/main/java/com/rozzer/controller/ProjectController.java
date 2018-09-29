@@ -2,7 +2,10 @@ package com.rozzer.controller;
 
 
 import com.rozzer.controller.common.EntityController;
+import com.rozzer.manager.CoreObjectManager;
+import com.rozzer.manager.ProjectManager;
 import com.rozzer.model.Project;
+import com.rozzer.model.Theme;
 import com.rozzer.session.SessionData;
 import org.eclipse.egit.github.core.Repository;
 import org.eclipse.egit.github.core.service.RepositoryService;
@@ -66,11 +69,11 @@ public class ProjectController implements EntityController<Project> {
         manager(Project.class).delete(object);
     }
 
-    @GetMapping("/themes")
-    public List<Project> getProjectByThemes(@RequestParam String themes) {
-//        Iterable<String> themNames = Splitter.on(',').trimResults().split(themes);
-//        manager(Project.class).getByThems()
-        throw new UnsupportedOperationException("not implemented yet");
+    @GetMapping("/theme")
+    public List<Project> getProjectByThemes(@RequestParam String s) {
+        List<Theme> themeList = CoreObjectManager.getInstance().getManager(Theme.class).getByName(s);
+        Theme theme = themeList.stream().findFirst().orElse(new Theme(s));
+        return manager(Project.class, ProjectManager.class).findByTheme(theme);
     }
 
 }
