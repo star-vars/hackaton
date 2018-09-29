@@ -64,6 +64,9 @@ public class Application {
         themes.add(newTheme("C#", "second most popular language"));
         themes.add(newTheme(".NET", "C# for web"));
         themes.add(newTheme("Java", "Popular language"));
+        themes.add(newTheme("JS", "It's JS baby!"));
+        themes.add(newTheme("C++", "Manage the memory"));
+        themes.add(newTheme("C", "If wou want your OS"));
 
 
         Set<Comment> comments = Sets.newHashSet();
