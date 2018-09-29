@@ -1,7 +1,7 @@
 package com.rozzer.spring.repositories;
 
-import com.rozzer.model.Test;
+import com.rozzer.model.Case;
 import org.springframework.data.repository.CrudRepository;
 
-public interface TestRepository extends CrudRepository<Test, Long> {
+public interface CaseRepository extends CrudRepository<Case, Long> {
 }

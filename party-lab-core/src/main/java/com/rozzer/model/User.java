@@ -16,6 +16,7 @@ public class User extends AbstractSaved {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     private String name;
+    private String mail;
     private Role role;
 
 
@@ -59,5 +60,13 @@ public class User extends AbstractSaved {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 }

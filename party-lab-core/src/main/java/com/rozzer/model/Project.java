@@ -1,5 +1,6 @@
 package com.rozzer.model;
 
+import com.google.common.collect.Lists;
 import com.rozzer.common.AbstractSaved;
 
 import javax.annotation.Nonnull;
@@ -7,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.List;
 
 @Entity
 public class Project extends AbstractSaved {
@@ -16,6 +18,12 @@ public class Project extends AbstractSaved {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     private String name;
+    private List<Case> cases = Lists.newArrayList();
+    private List<Comment> comments = Lists.newArrayList();
+    private List<Theme> themes = Lists.newArrayList();
+    private User customer;
+
+
 
     public Project() {
     }

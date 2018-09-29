@@ -1,6 +1,7 @@
 package com.rozzer.model;
 
 import com.rozzer.common.AbstractSaved;
+import org.json.simple.JSONObject;
 
 import javax.annotation.Nonnull;
 import javax.persistence.Entity;
@@ -9,17 +10,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Test extends AbstractSaved {
+public class Case extends AbstractSaved {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     private String name;
+    private JSONObject caseBody;
 
-    public Test() {
+    public Case() {
     }
 
-    public Test(String name) {
+    public Case(String name) {
         this.name = name;
     }
 
@@ -47,5 +49,13 @@ public class Test extends AbstractSaved {
     @Override
     public void setName(@Nonnull String name) {
         this.name = name;
+    }
+
+    public JSONObject getCaseBody() {
+        return caseBody;
+    }
+
+    public void setCaseBody(JSONObject caseBody) {
+        this.caseBody = caseBody;
     }
 }
