@@ -48,6 +48,11 @@ public class CommentManager implements Manager<Comment> {
     }
 
     @Override
+    public List<Comment> getByName(String name) {
+        return repository.findAllByName(name);
+    }
+
+    @Override
     public Comment create() {
         Comment comment = new Comment();
         repository.save(comment);
