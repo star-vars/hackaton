@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 @Entity(name = "cases")
 public class Case extends AbstractSaved {
 
-
     private JSONObject caseBody;
 
     public Case() {

@@ -5,7 +5,6 @@ import com.google.common.collect.Sets;
 import com.rozzer.common.AbstractSaved;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import java.util.List;
@@ -18,7 +17,7 @@ public class Project extends AbstractSaved {
     private List<Case> cases = Lists.newArrayList();
     @ManyToOne
     private List<Comment> comments = Lists.newArrayList();
-    @ManyToMany
+    @ManyToOne
     private Set<Theme> themes = Sets.newHashSet();
     @OneToMany
     private PLUser customer;
@@ -35,7 +34,6 @@ public class Project extends AbstractSaved {
     public void save() {
 
     }
-
 
     public Set<Theme> getThemes() {
         return themes;
