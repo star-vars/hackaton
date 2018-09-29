@@ -1,0 +1,9 @@
+
+<div class="container">
+  <input type="button" class="btn btn-success" value="Create new theme" (click)="popupTheme('edit', null)"/>
+  <input type="button" class="btn btn-success" value="Create new task" [routerLink]="['/task/', -1]"/>
+  my messages
+  my tasks
+</div>
+
+<theme-edit id="theme-popup" class="modal" tabindex="-1" [theme]="currentTheme" role="dialog"></theme-edit>
