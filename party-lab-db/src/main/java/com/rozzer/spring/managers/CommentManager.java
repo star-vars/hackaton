@@ -7,6 +7,7 @@ import com.rozzer.model.Comment;
 import com.rozzer.spring.repositories.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,6 +31,11 @@ public class CommentManager implements Manager<Comment> {
     @Override
     public List<Comment> getAll() {
         return Lists.newArrayList(repository.findAll());
+    }
+
+    @Override
+    public List<Comment> getAllByPage(int page){
+        throw new NotImplementedException();
     }
 
     @Override

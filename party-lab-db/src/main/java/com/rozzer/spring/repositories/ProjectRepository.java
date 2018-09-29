@@ -1,13 +1,15 @@
 package com.rozzer.spring.repositories;
 
 import com.rozzer.model.Project;
-import com.rozzer.model.UserProject;
-import org.springframework.data.repository.CrudRepository;
+import com.rozzer.model.Theme;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;
 
-public interface ProjectRepository extends CrudRepository<Project, Long> {
+public interface ProjectRepository extends PagingAndSortingRepository<Project, Long> {
 
     List<Project> findAllByName(String name);
+    List<Project> findAllByThemes(Theme theme);
+
 
 }

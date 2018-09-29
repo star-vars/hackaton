@@ -2,7 +2,7 @@ package com.rozzer.validate;
 
 import com.google.common.collect.Lists;
 import com.rozzer.model.Case;
-//import javafx.util.Pair;
+import javafx.util.Pair;
 
 import java.util.List;
 

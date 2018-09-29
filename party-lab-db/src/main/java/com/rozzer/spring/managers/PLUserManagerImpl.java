@@ -7,6 +7,7 @@ import com.rozzer.model.PLUser;
 import com.rozzer.spring.repositories.PLUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,6 +31,11 @@ public class PLUserManagerImpl implements PLUserManager {
     @Override
     public List<PLUser> getAll() {
         return Lists.newArrayList(repository.findAll());
+    }
+
+    @Override
+    public List<PLUser> getAllByPage(int page){
+        throw new NotImplementedException();
     }
 
     @Override
