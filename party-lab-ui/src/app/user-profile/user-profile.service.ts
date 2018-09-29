@@ -18,7 +18,7 @@ export class UserProfileService {
       c.mail = input['mail'];
       c.role = input['role'];
       c.login = input['login'];
-      console.log(c);
+      //console.log(c);
       return c;
 
   }

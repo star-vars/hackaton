@@ -3,8 +3,9 @@
     <!--tr *ngIf=" setPrevTheme(task.theme) " (click)="showOrHide(task.theme.name)" class="bg-light">
       <td> {{ task.theme.name }} </td>
       <td></td>
-    </tr-->
-    <tr class="{{ 'theme_' + task.theme.name.toLowerCase().replace(' ', '_').trim() }}">
+    </tr>
+    <tr class="{{ 'theme_' + task.theme.name.toLowerCase().replace(' ', '_').trim() }}"-->
+    <tr>
       <td>
         <a [routerLink]="['/task/', task.id]">{{ task.name }}</a>
       </td>
