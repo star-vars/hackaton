@@ -1,8 +1,10 @@
 package com.rozzer.controller;
 
+
 import com.rozzer.controller.common.EntityController;
 import com.rozzer.controller.oauth.SessionData;
 import com.rozzer.model.Project;
+import com.rozzer.session.SessionData;
 import org.eclipse.egit.github.core.Repository;
 import org.eclipse.egit.github.core.service.RepositoryService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -3,7 +3,7 @@ package com.rozzer.controller;
 import com.google.common.base.Strings;
 import com.rozzer.controller.oauth.AccessTokenService;
 import com.rozzer.controller.oauth.InvalidOAuthStateException;
-import com.rozzer.controller.oauth.SessionData;
+import com.rozzer.controller.oauth.SessionDataImpl;
 import com.rozzer.manager.PLUserManager;
 import com.rozzer.model.PLUser;
 import org.eclipse.egit.github.core.User;
@@ -28,7 +28,7 @@ public class LoginController {
     private AccessTokenService accessTokenService;
 
     @Autowired
-    private SessionData sessionData;
+    private SessionDataImpl sessionData;
 
     @RequestMapping(value = "authorized")
     public String authorized(@RequestParam("code") final String code,
