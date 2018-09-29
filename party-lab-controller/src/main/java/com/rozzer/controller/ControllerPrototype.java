@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Deprecated
 @RestController
-public class BookControllerPrototype {
+public class ControllerPrototype {
 
     @RequestMapping(value = "/lab", method = RequestMethod.GET)
     public String validate(){

@@ -1,6 +1,7 @@
 package com.rozzer.model;
 
 import com.rozzer.common.AbstractSaved;
+import com.rozzer.common.Role;
 
 import javax.annotation.Nonnull;
 import javax.persistence.Entity;
@@ -8,45 +9,46 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-
-/**
- *
- */
 @Entity
-public class Book extends AbstractSaved {
+public class User extends AbstractSaved {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     private String name;
+    private Role role;
 
 
-    public Book() {
+    public User() {
     }
 
-    public Book(String name) {
+    public User(String name) {
         this.name = name;
     }
 
+    @Override
+    public void save() {
+
+    }
+
+    @Override
     public Long getId() {
         return id;
     }
 
-
-    public void setId(Long id) {
+    @Override
+    public void setId(@Nonnull Long id) {
         this.id = id;
     }
 
     @Nonnull
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public void setName(@Nonnull String name) {
         this.name = name;
-    }
-
-    public void save() {
-
     }
 }
