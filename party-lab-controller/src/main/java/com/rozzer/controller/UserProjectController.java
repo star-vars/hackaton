@@ -1,5 +1,8 @@
 package com.rozzer.controller;
 
+import com.rozzer.checks.Check;
+import com.rozzer.checks.CheckManager;
+import com.rozzer.checks.result.CheckResult;
 import com.rozzer.common.WorkStatus;
 import com.rozzer.controller.common.EntityController;
 import com.rozzer.manager.UserProjectManager;
@@ -16,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.*;
 
 import static com.rozzer.controller.common.ControllerHelper.manager;
 
@@ -26,6 +29,9 @@ public class UserProjectController implements EntityController<UserProject> {
 
     @Autowired
     private SessionData sessionData;
+
+    @Autowired
+    private CheckManager checkManager;
 
     @Override
     @RequestMapping(value = "/all", method = RequestMethod.GET)
@@ -80,5 +86,17 @@ public class UserProjectController implements EntityController<UserProject> {
     @RequestMapping(value = "myByStatus/{status}", method = RequestMethod.GET)
     public List<UserProject> myByStatus(@PathVariable WorkStatus status) {
         return manager(UserProject.class, UserProjectManager.class).findByUserAndStatus(sessionData.getUser(), status);
+    }
+
+    @RequestMapping(value = "projectPhases/{projectId}")
+    public Map<Check, CheckResult> checkProjectPhases(@PathVariable Long projectId) {
+        Optional<UserProject> project = manager(UserProject.class).getById(projectId);
+        Map<Check, CheckResult> results = new HashMap<>();
+        if (project.isPresent()) {
+            checkManager.getChecks(project.get()).forEach(check -> results.put(check, check.performCheck(sessionData)));
+            return results;
+        } else {
+            return Collections.emptyMap();
+        }
     }
 }

@@ -10,5 +10,6 @@ import java.util.List;
 public interface UserProjectRepository extends CrudRepository<UserProject, Long> {
 
     List<UserProject> findByUserAndStatus(PLUser user, WorkStatus status);
+    List<UserProject> findAllByName(String name);
 
 }

@@ -48,6 +48,11 @@ public class ThemeManager implements Manager<Theme> {
     }
 
     @Override
+    public List<Theme> getByName(String name) {
+        return repository.findAllByName(name);
+    }
+
+    @Override
     public Theme create() {
         Theme theme = new Theme();
         repository.save(theme);
