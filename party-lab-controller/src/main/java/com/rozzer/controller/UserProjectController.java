@@ -2,10 +2,10 @@ package com.rozzer.controller;
 
 import com.rozzer.common.WorkStatus;
 import com.rozzer.controller.common.Controller;
-import com.rozzer.controller.oauth.SessionData;
 import com.rozzer.manager.UserProjectManager;
 import com.rozzer.model.Project;
 import com.rozzer.model.UserProject;
+import com.rozzer.session.SessionData;
 import org.eclipse.egit.github.core.Repository;
 import org.eclipse.egit.github.core.RepositoryId;
 import org.eclipse.egit.github.core.service.RepositoryService;
