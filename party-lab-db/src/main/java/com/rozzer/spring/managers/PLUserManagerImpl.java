@@ -60,7 +60,7 @@ public class PLUserManagerImpl implements PLUserManager {
     }
 
     @Override
-    public Optional<PLUser> getByNameAndEmail(String name, String email) {
-        return repository.getPLUserByNameAndMail(name, email);
+    public Optional<PLUser> getByLogin(String login) {
+        return repository.getPLUserByLogin(login);
     }
 }

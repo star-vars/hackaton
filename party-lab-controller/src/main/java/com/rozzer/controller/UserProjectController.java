@@ -5,6 +5,7 @@ import com.rozzer.controller.oauth.SessionData;
 import com.rozzer.model.Project;
 import com.rozzer.model.UserProject;
 import org.eclipse.egit.github.core.Repository;
+import org.eclipse.egit.github.core.RepositoryId;
 import org.eclipse.egit.github.core.service.RepositoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,7 +36,9 @@ public class UserProjectController implements Controller<UserProject> {
             RepositoryService repositoryService = new RepositoryService();
             repositoryService.getClient().setOAuth2Token(sessionData.getAccessToken());
             String prName = sessionData.getUser().getName() + " " + project.getName();
-            Repository repository = repositoryService.createRepository(new Repository().setName(prName));
+            Repository repository = repositoryService.forkRepository(
+                    RepositoryId.create(project.getCustomer().getLogin(), project.getRepo())
+            );
             UserProject userProject = manager(UserProject.class).create();
             userProject.setName(prName);
             userProject.setUser(sessionData.getUser());

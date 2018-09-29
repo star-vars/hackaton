@@ -10,6 +10,7 @@ public class PLUser extends AbstractSaved {
 
     private String mail;
     private Role role;
+    private String login;
 
     public PLUser() {
     }
@@ -32,6 +33,14 @@ public class PLUser extends AbstractSaved {
 
     public void setMail(String mail) {
         this.mail = mail;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     @Override

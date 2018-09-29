@@ -23,6 +23,7 @@ public class Project extends AbstractSaved {
     @ManyToOne
     @JoinColumn(name="customer_id")
     private PLUser customer;
+    private String repo;
 
     public Project() {
         super();
@@ -43,5 +44,21 @@ public class Project extends AbstractSaved {
 
     public void setThemes(Set<Theme> themes) {
         this.themes = themes;
+    }
+
+    public String getRepo() {
+        return repo;
+    }
+
+    public void setRepo(String repo) {
+        this.repo = repo;
+    }
+
+    public PLUser getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(PLUser customer) {
+        this.customer = customer;
     }
 }
