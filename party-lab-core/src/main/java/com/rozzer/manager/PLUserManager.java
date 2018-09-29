@@ -2,6 +2,8 @@ package com.rozzer.manager;
 
 import com.rozzer.model.PLUser;
 
+import java.util.Optional;
+
 public interface PLUserManager extends Manager<PLUser> {
-    PLUser getByNameAndEmail(String login, String name);
+    Optional<PLUser> getByNameAndEmail(String login, String email);
 }

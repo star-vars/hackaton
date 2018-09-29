@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CaseManager implements Manager<Case> {
@@ -47,8 +48,8 @@ public class CaseManager implements Manager<Case> {
     }
 
     @Override
-    public Case getById(Long id) {
-        return repository.findById(id).get();
+    public Optional<Case> getById(Long id) {
+        return repository.findById(id);
     }
 
     @Override

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserProjectManager implements Manager<UserProject> {
@@ -42,8 +43,8 @@ public class UserProjectManager implements Manager<UserProject> {
     }
 
     @Override
-    public UserProject getById(Long id) {
-        return repository.findById(id).get();
+    public Optional<UserProject> getById(Long id) {
+        return repository.findById(id);
     }
 
     @Override

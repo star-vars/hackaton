@@ -3,6 +3,7 @@ package com.rozzer.controller;
 import com.rozzer.controller.oauth.AccessTokenService;
 import com.rozzer.controller.oauth.InvalidOAuthStateException;
 import com.rozzer.controller.oauth.SessionData;
+import com.rozzer.manager.PLUserManager;
 import com.rozzer.model.PLUser;
 import org.eclipse.egit.github.core.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
+
+import java.util.Optional;
 
 import static com.rozzer.controller.common.ControllerHelper.manager;
 
@@ -39,6 +42,14 @@ public class LoginController {
             org.eclipse.egit.github.core.User ghUser = service.getUser();
             String login = ghUser.getLogin();
             String email = ghUser.getEmail();
+            PLUser plUser = manager(PLUser.class, PLUserManager.class).getByNameAndEmail(login, email).orElseGet(() -> {
+                PLUser user = manager(PLUser.class).create();
+                user.setName(login);
+                user.setMail(email);
+                manager(PLUser.class).save(user);
+                return user;
+            });
+            sessionData.setUser(plUser);
             return "Logged in to gh, login " + login + " email " + email;
         } else {
             return "No login data";

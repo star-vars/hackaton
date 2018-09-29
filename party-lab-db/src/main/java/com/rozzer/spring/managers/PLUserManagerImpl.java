@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PLUserManagerImpl implements PLUserManager {
@@ -47,8 +48,8 @@ public class PLUserManagerImpl implements PLUserManager {
     }
 
     @Override
-    public PLUser getById(Long id) {
-        return repository.findById(id).orElse(null);
+    public Optional<PLUser> getById(Long id) {
+        return repository.findById(id);
     }
 
     @Override
@@ -59,7 +60,7 @@ public class PLUserManagerImpl implements PLUserManager {
     }
 
     @Override
-    public PLUser getByNameAndEmail(String name, String email) {
+    public Optional<PLUser> getByNameAndEmail(String name, String email) {
         return repository.getPLUserByNameAndMail(name, email);
     }
 }

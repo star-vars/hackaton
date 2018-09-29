@@ -5,7 +5,6 @@ import com.rozzer.controller.oauth.SessionData;
 import com.rozzer.model.Project;
 import com.rozzer.model.UserProject;
 import org.eclipse.egit.github.core.Repository;
-import org.eclipse.egit.github.core.RepositoryId;
 import org.eclipse.egit.github.core.service.RepositoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 import static com.rozzer.controller.common.ControllerHelper.manager;
 
@@ -54,7 +54,7 @@ public class UserProjectController implements Controller<UserProject> {
 
     @Override
     @RequestMapping(method = RequestMethod.GET)
-    public UserProject read(String id) {
+    public Optional<UserProject> read(String id) {
         return manager(UserProject.class).getById(new Long(id));
     }
 
