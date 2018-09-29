@@ -1,7 +1,7 @@
 package com.rozzer.validate;
 
-import com.rozzer.model.UserProject;
+import com.rozzer.model.Case;
 
 public interface TestEngine {
-    Report checkProject(UserProject userProject);
+    Status checkCase(Case aCase);
 }
