@@ -2,16 +2,11 @@ package com.rozzer.model;
 
 import com.rozzer.common.AbstractSaved;
 
-import javax.annotation.Nonnull;
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 
-@Entity
+@Entity(name = "user_projects")
 public class UserProject extends AbstractSaved {
-
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private Long id;
-    private String name;
 
     @ManyToMany
     private PLUser user;
@@ -49,25 +44,4 @@ public class UserProject extends AbstractSaved {
 
     }
 
-    @Nonnull
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(@Nonnull Long id) {
-        this.id = id;
-    }
-
-    @Nonnull
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public void setName(@Nonnull String name) {
-        this.name = name;
-    }
 }
