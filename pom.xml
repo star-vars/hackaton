@@ -24,6 +24,7 @@
         <module>party-lab-db</module>
         <module>party-lab-ui</module>
         <module>common</module>
+        <module>party-lab-gh-ext</module>
     </modules>
 
 </project>
