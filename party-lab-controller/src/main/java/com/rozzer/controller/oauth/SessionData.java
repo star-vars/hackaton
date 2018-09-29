@@ -1,6 +1,7 @@
 package com.rozzer.controller.oauth;
 
 import com.rozzer.model.PLUser;
+import org.eclipse.egit.github.core.client.GitHubClient;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
@@ -9,16 +10,8 @@ import org.springframework.stereotype.Component;
 @Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class SessionData {
 
-    private String accessToken;
     private PLUser user;
-
-    public String getAccessToken() {
-        return accessToken;
-    }
-
-    public void setAccessToken(String accessToken) {
-        this.accessToken = accessToken;
-    }
+    private GitHubClient ghClient;
 
     public PLUser getUser() {
         return user;
@@ -26,5 +19,13 @@ public class SessionData {
 
     public void setUser(PLUser user) {
         this.user = user;
+    }
+
+    public GitHubClient getGhClient() {
+        return ghClient;
+    }
+
+    public void setGhClient(GitHubClient ghClient) {
+        this.ghClient = ghClient;
     }
 }

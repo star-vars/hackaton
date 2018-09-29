@@ -17,6 +17,7 @@ public class UserProject extends AbstractSaved {
     private Project project;
 
     private String repo;
+    private String repoUrl;
 
     public UserProject() {
     }
@@ -47,6 +48,14 @@ public class UserProject extends AbstractSaved {
 
     public void setRepo(String repo) {
         this.repo = repo;
+    }
+
+    public String getRepoUrl() {
+        return repoUrl;
+    }
+
+    public void setRepoUrl(String repoUrl) {
+        this.repoUrl = repoUrl;
     }
 
     @Override

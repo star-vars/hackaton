@@ -24,6 +24,7 @@ public class Project extends AbstractSaved {
     @JoinColumn(name="customer_id")
     private PLUser customer;
     private String repo;
+    private String repoUrl;
 
     public Project() {
         super();
@@ -60,5 +61,13 @@ public class Project extends AbstractSaved {
 
     public void setCustomer(PLUser customer) {
         this.customer = customer;
+    }
+
+    public String getRepoUrl() {
+        return repoUrl;
+    }
+
+    public void setRepoUrl(String repoUrl) {
+        this.repoUrl = repoUrl;
     }
 }

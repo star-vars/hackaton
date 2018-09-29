@@ -1,7 +1,9 @@
 package com.rozzer.controller;
 
 import com.rozzer.controller.common.Controller;
+import com.rozzer.controller.oauth.SessionData;
 import com.rozzer.model.Project;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,6 +13,9 @@ import static com.rozzer.controller.common.ControllerHelper.manager;
 @RestController
 @RequestMapping(value = "/project")
 public class ProjectController implements Controller<Project> {
+
+    @Autowired
+    private SessionData sessionData;
 
     @Override
     @RequestMapping(value = "/all", method = RequestMethod.GET)
@@ -33,6 +38,7 @@ public class ProjectController implements Controller<Project> {
     @Override
     @RequestMapping(method = RequestMethod.PUT)
     public void update(Project object) {
+
         manager(Project.class).save(object);
     }
 

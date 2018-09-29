@@ -6,6 +6,7 @@ import com.rozzer.controller.oauth.InvalidOAuthStateException;
 import com.rozzer.controller.oauth.SessionData;
 import com.rozzer.manager.PLUserManager;
 import com.rozzer.model.PLUser;
+import org.eclipse.egit.github.core.client.GitHubClient;
 import org.eclipse.egit.github.core.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,9 +38,8 @@ public class LoginController {
             if (state != sessionState) {
                 throw new InvalidOAuthStateException(state, sessionState);
             }
-            sessionData.setAccessToken(accessTokenService.getAccessToken(code));
-            UserService service = new UserService();
-            service.getClient().setOAuth2Token(sessionData.getAccessToken());
+            sessionData.setGhClient(new GitHubClient(accessTokenService.getAccessToken(code)));
+            UserService service = new UserService(sessionData.getGhClient());
             org.eclipse.egit.github.core.User ghUser = service.getUser();
             String login = ghUser.getLogin();
             String name = ghUser.getName();

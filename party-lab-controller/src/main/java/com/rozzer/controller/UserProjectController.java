@@ -33,8 +33,7 @@ public class UserProjectController implements Controller<UserProject> {
     @RequestMapping(value = "pick", method = RequestMethod.POST)
     public UserProject createFromProject(Project project) {
         try {
-            RepositoryService repositoryService = new RepositoryService();
-            repositoryService.getClient().setOAuth2Token(sessionData.getAccessToken());
+            RepositoryService repositoryService = new RepositoryService(sessionData.getGhClient());
             String prName = sessionData.getUser().getName() + " " + project.getName();
             Repository repository = repositoryService.forkRepository(
                     RepositoryId.create(project.getCustomer().getLogin(), project.getRepo())
@@ -42,7 +41,8 @@ public class UserProjectController implements Controller<UserProject> {
             UserProject userProject = manager(UserProject.class).create();
             userProject.setName(prName);
             userProject.setUser(sessionData.getUser());
-            userProject.setRepo(repository.generateId());
+            userProject.setRepo(repository.getName());
+            userProject.setRepoUrl(repository.getUrl());
             manager(UserProject.class).save(userProject);
             return userProject;
         } catch (IOException e) {
