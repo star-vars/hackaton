@@ -16,6 +16,7 @@ import org.springframework.context.annotation.Bean;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Optional;
 import java.util.Set;
 
 
@@ -154,7 +155,14 @@ public class Application {
     }
 
     private Theme newTheme(String name, String description) {
-        Theme theme = CoreObjectManager.getInstance().getManager(Theme.class).create();
+        Optional<Theme> first =
+                CoreObjectManager.getInstance().getManager(Theme.class).getByName(name).stream().findFirst();
+        Theme theme;
+        if (first.isPresent()){
+            theme = first.get();
+        } else {
+            theme = CoreObjectManager.getInstance().getManager(Theme.class).create();
+        }
         theme.setName(name);
         theme.setDescription(description);
         CoreObjectManager.getInstance().getManager(Theme.class).save(theme);
