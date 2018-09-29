@@ -7,7 +7,6 @@ import com.rozzer.checks.result.ComplexCheckResult;
 import com.rozzer.checks.result.SimpleCheckResult;
 import com.rozzer.model.Case;
 import com.rozzer.session.SessionData;
-import com.rozzer.validate.Report;
 import com.rozzer.validate.Reporter;
 import com.rozzer.validate.Status;
 import javafx.util.Pair;
