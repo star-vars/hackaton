@@ -3,7 +3,10 @@ package com.rozzer.spring.managers;
 import com.google.common.collect.Lists;
 import com.rozzer.manager.CoreObjectManager;
 import com.rozzer.manager.Manager;
+import com.rozzer.manager.UserProjectManager;
+import com.rozzer.model.PLUser;
 import com.rozzer.model.UserProject;
+import com.rozzer.model.WorkStatus;
 import com.rozzer.spring.repositories.UserProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,12 +15,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserProjectManager implements Manager<UserProject> {
+public class UserProjectManagerImpl implements UserProjectManager {
 
     private UserProjectRepository repository;
 
     @Autowired
-    public UserProjectManager(UserProjectRepository projectRepository) {
+    public UserProjectManagerImpl(UserProjectRepository projectRepository) {
         this.repository = projectRepository;
         init();
     }
@@ -25,7 +28,6 @@ public class UserProjectManager implements Manager<UserProject> {
     private void init() {
         CoreObjectManager.getManagerFactory().register(UserProject.class, this);
     }
-
 
     @Override
     public List<UserProject> getAll() {
@@ -54,4 +56,8 @@ public class UserProjectManager implements Manager<UserProject> {
         return project;
     }
 
+    @Override
+    public List<UserProject> findByUserAndStatus(PLUser user, WorkStatus status) {
+        return repository.findByUserAndStatus(user, status);
+    }
 }

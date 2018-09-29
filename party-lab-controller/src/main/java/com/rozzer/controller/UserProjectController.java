@@ -2,12 +2,15 @@ package com.rozzer.controller;
 
 import com.rozzer.controller.common.Controller;
 import com.rozzer.controller.oauth.SessionData;
+import com.rozzer.manager.UserProjectManager;
 import com.rozzer.model.Project;
 import com.rozzer.model.UserProject;
+import com.rozzer.model.WorkStatus;
 import org.eclipse.egit.github.core.Repository;
 import org.eclipse.egit.github.core.RepositoryId;
 import org.eclipse.egit.github.core.service.RepositoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -57,8 +60,8 @@ public class UserProjectController implements Controller<UserProject> {
     }
 
     @Override
-    @RequestMapping(method = RequestMethod.GET)
-    public UserProject read(String id) {
+    @RequestMapping(value = "{id}", method = RequestMethod.GET)
+    public UserProject read(@PathVariable String id) {
         return manager(UserProject.class).getById(new Long(id)).orElse(new UserProject());
     }
 
@@ -72,5 +75,10 @@ public class UserProjectController implements Controller<UserProject> {
     @RequestMapping(method = RequestMethod.DELETE)
     public void delete(UserProject object) {
         manager(UserProject.class).delete(object);
+    }
+
+    @RequestMapping(value = "myByStatus/{status}", method = RequestMethod.GET)
+    public List<UserProject> myByStatus(@PathVariable WorkStatus status) {
+        return manager(UserProject.class, UserProjectManager.class).findByUserAndStatus(sessionData.getUser(), status);
     }
 }

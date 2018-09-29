@@ -18,6 +18,7 @@ public class UserProject extends AbstractSaved {
 
     private String repo;
     private String repoUrl;
+    private WorkStatus status;
 
     public UserProject() {
     }
@@ -63,4 +64,11 @@ public class UserProject extends AbstractSaved {
 
     }
 
+    public WorkStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(WorkStatus status) {
+        this.status = status;
+    }
 }
