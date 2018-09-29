@@ -15,7 +15,7 @@ public class Project extends AbstractSaved {
     private List<Case> cases = Lists.newArrayList();
     @OneToMany
     private List<Comment> comments = Lists.newArrayList();
-    @OneToMany
+    @ManyToMany
     private Set<Theme> themes = Sets.newHashSet();
     @ManyToOne
     @JoinColumn(name="customer_id")

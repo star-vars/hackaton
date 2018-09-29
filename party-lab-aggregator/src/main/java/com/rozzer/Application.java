@@ -1,6 +1,6 @@
 package com.rozzer;
 
-import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 import com.rozzer.common.CaseType;
 import com.rozzer.common.Role;
 import com.rozzer.common.WorkStatus;
@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Bean;
 
 import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 
 @SuppressWarnings("SpringFacetCodeInspection")
@@ -52,21 +52,21 @@ public class Application {
     }
 
     private void generationTestData() {
-        List<PLUser> plUsers = Lists.newArrayList();
+        Set<PLUser> plUsers = Sets.newHashSet();
         plUsers.add(newUser("Alex", "AA", Role.USER, "alex@mail.com"));
         plUsers.add(newUser("Ben", "BB", Role.USER, "ben@mail.com"));
         plUsers.add(newUser("Jack", "JJ", Role.USER, "jack@mail.com"));
         plUsers.add(newUser("Kim", "KK", Role.USER, "kim@mail.com"));
         plUsers.add(newUser("Michelle", "MM", Role.ADMIN, "michelle@mail.com"));
 
-        List<Theme> themes = Lists.newArrayList();
+        Set<Theme> themes = Sets.newHashSet();
         themes.add(newTheme("Spring", "Java language framework"));
         themes.add(newTheme("C#", "second most popular language"));
         themes.add(newTheme(".NET", "C# for web"));
         themes.add(newTheme("Java", "Popular language"));
 
 
-        List<Comment> comments = Lists.newArrayList();
+        Set<Comment> comments = Sets.newHashSet();
         comments.add(newComment(plUsers.stream().findAny().get(), "0 such code"));
         comments.add(newComment(plUsers.stream().findAny().get(), "1 such code"));
         comments.add(newComment(plUsers.stream().findAny().get(), "2 such code"));
@@ -78,10 +78,10 @@ public class Application {
         comments.add(newComment(plUsers.stream().findAny().get(), "8 such code"));
         comments.add(newComment(plUsers.stream().findAny().get(), "9 such code"));
 
-        List<Project> projects = Lists.newArrayList();
+        Set<Project> projects = Sets.newHashSet();
         projects.add(newProject("Some C# Project", plUsers, comments, themes.stream().findAny().get()));
-/*        projects.add(newProject("Some C++ Project", plUsers, comments, themes.stream().findAny().get() ));
-        projects.add(newProject("Some Java Project", plUsers, comments, themes.stream().findAny().get() ));*/
+        projects.add(newProject("Some C++ Project", plUsers, comments, themes.stream().findAny().get() ));
+        projects.add(newProject("Some Java Project", plUsers, comments, themes.stream().findAny().get() ));
 
         newUserProject(projects.stream().findAny().get(), plUsers.stream().findAny().get(), "https://github.com/star-vars/hackaton.git", WorkStatus.STARTED);
         newUserProject(projects.stream().findAny().get(), plUsers.stream().findAny().get(), "https://github.com/star-vars/hackaton.git", WorkStatus.COMPLETED);
@@ -110,18 +110,22 @@ public class Application {
     }
 
 
-    private Project newProject(String name, List<PLUser> plUsers, List<Comment> comments, Theme theme) {
+    private Project newProject(String name, Set<PLUser> plUsers, Set<Comment> comments, Theme theme) {
         Project someProject = CoreObjectManager.getInstance().getManager(Project.class).create();
         someProject.setName(name);
 
-        for (int i = 0; i < plUsers.size()-2; i++) {
-            someProject.getLikers().add(plUsers.stream().findAny().get());
+        for (int i = 0; i <= plUsers.size()-2; i++) {
+            PLUser user = plUsers.stream().findAny().get();
+            someProject.getLikers().add(user);
+            plUsers.remove(user);
         }
         someProject.setCustomer(plUsers.stream().findAny().get());
 
-/*        for (int i = 0; i < comments.size()-5; i++) {
-            someProject.getComments().add(comments.stream().findAny().get());
-        }*/
+        for (int i = 0; i <= comments.size()-5; i++) {
+            Comment e = comments.stream().findAny().get();
+            someProject.getComments().add(e);
+            comments.remove(e);
+        }
 
         someProject.getCases().add(newCase("Main Test Case", CaseType.USE_CASE));
         someProject.getCases().add(newCase("Some Test Case", CaseType.USE_CASE));
