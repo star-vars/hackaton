@@ -5,6 +5,5 @@ import org.eclipse.egit.github.core.client.GitHubClient;
 
 public interface SessionData {
     PLUser getUser();
-
     GitHubClient getGhClient();
 }
