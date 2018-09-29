@@ -9,13 +9,15 @@ import org.eclipse.egit.github.core.service.RepositoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.util.List;
 
 import static com.rozzer.controller.common.ControllerHelper.manager;
 
-@RequestMapping(value = "userproject")
+@RequestMapping(value = "/userproject")
+@RestController
 public class UserProjectController implements Controller<UserProject> {
 
     @Autowired
