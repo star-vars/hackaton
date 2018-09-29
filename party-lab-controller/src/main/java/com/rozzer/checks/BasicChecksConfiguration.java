@@ -9,7 +9,6 @@ import org.springframework.context.annotation.DependsOn;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import static com.rozzer.controller.common.ControllerHelper.manager;
 
@@ -17,25 +16,25 @@ import static com.rozzer.controller.common.ControllerHelper.manager;
 @DependsOn("themeManager")
 public class BasicChecksConfiguration implements CheckConfiguration {
 
-    public static final long JAVA_THEME_ID = 1;
-
     @Override
     public Map<Theme, List<Class<? extends Check>>> getChecksByThemes() {
         Map<Theme, List<Class<? extends Check>>> map = Maps.newHashMap();
-        Optional<Theme> theme = manager(Theme.class).getById(JAVA_THEME_ID);
-        Theme java = theme.orElseGet(() -> {
-            Theme t = manager(Theme.class).create();
-            t.setName("Java");
-            manager(Theme.class).save(t);
-            return t;
-        });
+        List<Theme> themes = manager(Theme.class).getByName("Java");
+        Theme theme;
+        if (themes.size() == 0) {
+            theme = manager(Theme.class).create();
+            theme.setName("Java");
+            manager(Theme.class).save(theme);
+        } else {
+            theme = themes.get(0);
+        }
         List<Class<? extends Check>> javaChecks = new ArrayList<>();
         javaChecks.add(ProjectHasDesignCheck.class);
         javaChecks.add(ProjectHasArchitectureCheck.class);
         javaChecks.add(ProjectHasTestCasesCheck.class);
         javaChecks.add(ProjectHasAutotestsByTestCasesCheck.class);
         javaChecks.add(ProjectHasCodePassingAutotestsCheck.class);
-        map.put(java, javaChecks);
+        map.put(theme, javaChecks);
         return map;
     }
 }

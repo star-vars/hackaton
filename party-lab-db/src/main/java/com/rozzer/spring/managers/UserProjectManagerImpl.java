@@ -49,6 +49,11 @@ public class UserProjectManagerImpl implements UserProjectManager {
     }
 
     @Override
+    public List<UserProject> getByName(String name) {
+        return repository.findAllByName(name);
+    }
+
+    @Override
     public UserProject create() {
         UserProject project = new UserProject();
         repository.save(project);

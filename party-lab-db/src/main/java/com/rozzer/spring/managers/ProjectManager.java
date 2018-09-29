@@ -48,6 +48,11 @@ public class ProjectManager implements Manager<Project> {
     }
 
     @Override
+    public List<Project> getByName(String name) {
+        return repository.findAllByName(name);
+    }
+
+    @Override
     public Project create() {
         Project project = new Project();
         repository.save(project);

@@ -48,6 +48,11 @@ public class PLUserManagerImpl implements PLUserManager {
     }
 
     @Override
+    public List<PLUser> getByName(String name) {
+        return repository.findAllByName(name);
+    }
+
+    @Override
     public PLUser create() {
         PLUser developer = new PLUser();
         repository.save(developer);

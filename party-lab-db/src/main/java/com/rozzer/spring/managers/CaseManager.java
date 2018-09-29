@@ -48,6 +48,11 @@ public class CaseManager implements Manager<Case> {
     }
 
     @Override
+    public List<Case> getByName(String name) {
+        return repository.findAllByName(name);
+    }
+
+    @Override
     public Case create() {
         Case test = new Case();
         repository.save(test);

@@ -10,5 +10,6 @@ public interface Manager<T extends Saved> {
     void save(T saved);
     void delete(T saved);
     Optional<T> getById(Long id);
+    List<T> getByName(String name);
     T create();
 }
