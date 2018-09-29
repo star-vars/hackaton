@@ -36,9 +36,10 @@
             </plugin>
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
+                <version>3.1.0</version>
                 <executions>
                     <execution>
-                        <id>copy-resources</id>
+                        <id>copy-resources-static</id>
                         <phase>validate</phase>
                         <goals><goal>copy-resources</goal></goals>
                         <configuration>
@@ -46,6 +47,25 @@
                             <resources>
                                 <resource>
                                     <directory>../party-lab-ui/dist/party-lab-ui</directory>
+                                    <excludes>
+                                        <exclude>**/*.html</exclude>
+                                    </excludes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-resources-templates</id>
+                        <phase>validate</phase>
+                        <goals><goal>copy-resources</goal></goals>
+                        <configuration>
+                            <outputDirectory>${build.directory}/classes/templates/</outputDirectory >
+                            <resources>
+                                <resource>
+                                    <directory>../party-lab-ui/dist/party-lab-ui</directory>
+                                    <includes>
+                                        <include>**/*.html</include>
+                                    </includes>
                                 </resource>
                             </resources>
                         </configuration>
@@ -64,6 +84,12 @@
         <dependency>
             <groupId>party-lab</groupId>
             <artifactId>party-lab-db</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>party-lab</groupId>
+            <artifactId>party-lab-ui</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
