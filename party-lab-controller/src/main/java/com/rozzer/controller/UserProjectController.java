@@ -1,6 +1,5 @@
 package com.rozzer.controller;
 
-import com.rozzer.checks.Check;
 import com.rozzer.checks.CheckManager;
 import com.rozzer.checks.result.CheckResult;
 import com.rozzer.common.WorkStatus;
@@ -86,6 +85,11 @@ public class UserProjectController implements EntityController<UserProject> {
     @RequestMapping(value = "myByStatus/{status}", method = RequestMethod.GET)
     public List<UserProject> myByStatus(@PathVariable WorkStatus status) {
         return manager(UserProject.class, UserProjectManager.class).findByUserAndStatus(sessionData.getUser(), status);
+    }
+
+    @RequestMapping(value = "myByStatus/all", method = RequestMethod.GET)
+    public List<UserProject> myByStatus() {
+        return manager(UserProject.class, UserProjectManager.class).findByUser(sessionData.getUser());
     }
 
     @RequestMapping(value = "projectPhases/{projectId}")

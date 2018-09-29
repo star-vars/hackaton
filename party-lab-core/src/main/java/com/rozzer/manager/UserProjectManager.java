@@ -9,5 +9,6 @@ import java.util.List;
 public interface UserProjectManager extends Manager<UserProject> {
 
     List<UserProject> findByUserAndStatus(PLUser user, WorkStatus status);
+    List<UserProject> findByUser(PLUser user);
 
 }
