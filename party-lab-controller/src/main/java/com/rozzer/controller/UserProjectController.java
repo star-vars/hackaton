@@ -89,11 +89,11 @@ public class UserProjectController implements EntityController<UserProject> {
     }
 
     @RequestMapping(value = "projectPhases/{projectId}")
-    public Map<Check, CheckResult> checkProjectPhases(@PathVariable Long projectId) {
+    public Map<String, CheckResult> checkProjectPhases(@PathVariable Long projectId) {
         Optional<UserProject> project = manager(UserProject.class).getById(projectId);
-        Map<Check, CheckResult> results = new HashMap<>();
+        Map<String, CheckResult> results = new HashMap<>();
         if (project.isPresent()) {
-            checkManager.getChecks(project.get()).forEach(check -> results.put(check, check.performCheck(sessionData)));
+            checkManager.getChecks(project.get()).forEach(check -> results.put(check.getId(), check.performCheck(sessionData)));
             return results;
         } else {
             return Collections.emptyMap();

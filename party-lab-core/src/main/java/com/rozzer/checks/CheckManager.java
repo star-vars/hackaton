@@ -16,12 +16,12 @@ public class CheckManager {
         checksByTheme = configuration.getChecksByThemes();
     }
 
-    private Map<Theme, List<Class<? extends Check>>> checksByTheme;
+    private Map<String, List<Class<? extends Check>>> checksByTheme;
 
     public List<Check> getChecks(UserProject userProject) {
         Set<Class<? extends Check>> preresult = new HashSet<>();
         userProject.getProject().getThemes().forEach(theme -> {
-            List<Class<? extends Check>> classes = checksByTheme.get(theme);
+            List<Class<? extends Check>> classes = checksByTheme.get(theme.getName());
             preresult.addAll(classes);
         });
         List<Class<? extends Check>> preresultClasses = new ArrayList<>(preresult);
