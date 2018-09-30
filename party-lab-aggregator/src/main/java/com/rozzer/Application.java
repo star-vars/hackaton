@@ -98,10 +98,10 @@ public class Application {
         projects.add(newProject("Some .NET Project", plUsers, comments, themes.stream().filter(theme -> theme.getName().equals("Java")).findAny().get() ));
         projects.add(newProject("Some JAVA2 Project", plUsers, comments, themes.stream().filter(theme -> theme.getName().equals("Java")).findAny().get() ));
 
-        newUserProject(projects.stream().findAny().get(), plUsers.stream().findAny().get(), "hackaton", WorkStatus.STARTED);
-        newUserProject(projects.stream().findAny().get(), plUsers.stream().findAny().get(), "hackaton", WorkStatus.COMPLETED);
-        newUserProject(projects.stream().findAny().get(), plUsers.stream().findAny().get(), "hackaton", WorkStatus.FAILED);
-        newUserProject(projects.stream().findAny().get(), plUsers.stream().findAny().get(), "hackaton", WorkStatus.STARTED);
+        newUserProject(projects.stream().findAny().get(), plUsers.stream().findAny().get(), "hackaton", "https://github.com/star-vars/hackaton", WorkStatus.STARTED);
+        newUserProject(projects.stream().findAny().get(), plUsers.stream().findAny().get(), "hackaton", "https://github.com/star-vars/hackaton", WorkStatus.COMPLETED);
+        newUserProject(projects.stream().findAny().get(), plUsers.stream().findAny().get(), "hackaton", "https://github.com/star-vars/hackaton", WorkStatus.FAILED);
+        newUserProject(projects.stream().findAny().get(), plUsers.stream().findAny().get(), "hackaton", "https://github.com/star-vars/hackaton", WorkStatus.STARTED);
 
     }
 
@@ -114,11 +114,11 @@ public class Application {
         return comment;
     }
 
-    private void newUserProject(Project project, PLUser plUser, String repo, WorkStatus started) {
+    private void newUserProject(Project project, PLUser plUser, String repo, String repoUrl, WorkStatus started) {
         UserProject userProject = CoreObjectManager.getInstance().getManager(UserProject.class).create();
         userProject.setProject(project);
         userProject.setRepo(repo);
-        userProject.setRepoUrl(repo);
+        userProject.setRepoUrl(repoUrl);
         userProject.setStatus(started);
         userProject.setUser(plUser);
         CoreObjectManager.getInstance().getManager(UserProject.class).save(userProject);
@@ -139,6 +139,7 @@ public class Application {
 
         for (int i = 0; i <= comments.size()-5; i++) {
             Comment e = comments.stream().findAny().get();
+            e.setProject(someProject);
             someProject.getComments().add(e);
             comments.remove(e);
         }
