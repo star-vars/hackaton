@@ -1,8 +1,13 @@
 <div class="container">
-  <div>
+  <div class="col-md-2">
     <button type="button" class="btn btn-primary btn-lg" (click)="createOrUpdate()">
       <span *ngIf="!canCreate">Update task</span>
       <span *ngIf="canCreate">Create task</span>
+    </button>
+  </div>
+  <div class="col-md-2">
+    <button type="button" class="btn btn-primary btn-lg" (click)="takeToWork()">
+      <span >Take To Work</span>
     </button>
   </div>
   <div class="form-group required">

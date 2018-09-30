@@ -4,6 +4,7 @@ import {RestService} from '../rest.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserProfileService} from '../user-profile/user-profile.service'
 import {Observable} from "rxjs";
+import {UserTask} from "./user.task.model";
 
 @Injectable({
   providedIn: 'root'
@@ -46,6 +47,16 @@ export class TaskService {
           });
         console.log(c);
         return c;
+  }
+
+  parseUTJSON( input: object ){
+        var c  = new UserTask( input['id'], input['name'], input['task']  );
+        console.log(c);
+        return c;
+  }
+
+  takeToWork(task: Task) {
+    return this.rest.takeToWork(task.id);
   }
 }
 

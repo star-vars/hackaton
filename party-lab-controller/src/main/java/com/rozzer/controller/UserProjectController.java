@@ -58,7 +58,8 @@ public class UserProjectController implements EntityController<UserProject> {
             RepositoryService repositoryService = new RepositoryService(sessionData.getGhClient());
             String prName = sessionData.getUser().getName() + " " + project.getName();
             Repository repository = repositoryService.forkRepository(
-                    RepositoryId.create(project.getCustomer().getLogin(), project.getRepo())
+                    RepositoryId.create(project.getCustomer().getLogin(),
+                            project.getName() +  "from" + sessionData.getUser().getName())
             );
             UserProject userProject = manager(UserProject.class).create();
             userProject.setName(prName);

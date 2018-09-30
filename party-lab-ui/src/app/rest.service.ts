@@ -100,4 +100,9 @@ export class RestService {
       return of(result as T);
     };
   }*/
+  takeToWork(projectId) {
+    return this.http.get(this.endpoint + 'userproject/pick/' +projectId).pipe(
+      map(this.extractData));
+
+  }
 }
