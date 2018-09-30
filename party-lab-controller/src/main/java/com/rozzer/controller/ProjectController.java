@@ -72,7 +72,7 @@ public class ProjectController implements EntityController<Project> {
             if (repository == null) {
                 repository = repositoryService.createRepository(new Repository().setName(object.getRepo()));
             }
-            object.setRepoUrl(repository.getUrl());
+            object.setRepoUrl(repository.getGitUrl());
 //            UpdatebaleContentsService contentsService = new UpdatebaleContentsService(sessionData.getGhClient());
 //            contentsService.createFile(repository,
 //                    ProjectStructure.TEST_CASES_FOLDER + "/.gitkeep",

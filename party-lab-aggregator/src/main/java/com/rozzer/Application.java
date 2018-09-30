@@ -88,13 +88,7 @@ public class Application {
         comments.add(newComment(plUsers.stream().findAny().get(), "9 such code"));
 
         Set<Project> projects = Sets.newHashSet();
-        projects.add(newProject("Some C# Project", plUsers, comments, themes.stream().filter(theme -> theme.getName().equals("Java")).findAny().get()));
-        projects.add(newProject("Some C++ Project", plUsers, comments, themes.stream().filter(theme -> theme.getName().equals("Java")).findAny().get() ));
-        projects.add(newProject("Some Java Project", plUsers, comments, themes.stream().filter(theme -> theme.getName().equals("Java")).findAny().get() ));
-        projects.add(newProject("Some C Project", plUsers, comments, themes.stream().filter(theme -> theme.getName().equals("Java")).findAny().get() ));
-        projects.add(newProject("Some JS Project", plUsers, comments, themes.stream().filter(theme -> theme.getName().equals("Java")).findAny().get() ));
-        projects.add(newProject("Some .NET Project", plUsers, comments, themes.stream().filter(theme -> theme.getName().equals("Java")).findAny().get() ));
-        projects.add(newProject("Some JAVA2 Project", plUsers, comments, themes.stream().filter(theme -> theme.getName().equals("Java")).findAny().get() ));
+        projects.add(newProject("Test Github project", plUsers, comments, themes.stream().filter(theme -> theme.getName().equals("Java")).findAny().get()));
 
         newUserProject(projects.stream().findFirst().get(), plUsers.stream().findAny().get(), "newRepo", "https://github.com/star-vars/newRepo", WorkStatus.STARTED);
         newUserProject(projects.stream().findAny().get(), plUsers.stream().findAny().get(), "hackaton", "https://github.com/star-vars/hackaton", WorkStatus.COMPLETED);
@@ -127,6 +121,8 @@ public class Application {
         Project someProject = CoreObjectManager.getInstance().getManager(Project.class).create();
         someProject.setName(name);
         someProject.setSpecification("Something specification");
+
+        someProject.setRepo("newRepo");
 
         for (int i = 0; i <= plUsers.size()-2; i++) {
             PLUser user = plUsers.stream().findAny().get();
