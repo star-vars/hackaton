@@ -14,4 +14,4 @@ const routes: Routes = [
   { path: "users", component: UserProfileListComponent }
 ];
 
-export const routingModule: ModuleWithProviders = RouterModule.forRoot(routes);
+export const routingModule: ModuleWithProviders = RouterModule.forRoot(routes, {useHash: true});
