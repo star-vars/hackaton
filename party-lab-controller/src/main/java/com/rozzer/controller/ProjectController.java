@@ -26,7 +26,7 @@ import java.util.List;
 import static com.rozzer.controller.common.ControllerHelper.manager;
 
 @RestController
-@RequestMapping(value = "/project")
+@RequestMapping(value = "/api/project")
 public class ProjectController implements EntityController<Project> {
 
     @Autowired

@@ -12,7 +12,7 @@ import java.util.List;
 import static com.rozzer.controller.common.ControllerHelper.manager;
 
 @RestController
-@RequestMapping(value = "/theme")
+@RequestMapping(value = "/api/theme")
 public class ThemeController implements EntityController<Theme> {
 
 

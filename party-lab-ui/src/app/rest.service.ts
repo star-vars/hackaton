@@ -10,7 +10,7 @@ export class RestService {
 
   constructor(private http: HttpClient) { }
 
-   endpoint: string = '';
+   endpoint: string = 'api/';
    httpOptions: object = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json'

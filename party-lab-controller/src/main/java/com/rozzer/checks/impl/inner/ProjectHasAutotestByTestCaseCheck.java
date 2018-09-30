@@ -8,7 +8,6 @@ import com.rozzer.model.ProjectStructure;
 import com.rozzer.session.SessionData;
 import org.eclipse.egit.github.core.RepositoryContents;
 import org.eclipse.egit.github.core.RepositoryId;
-import org.eclipse.egit.github.core.client.RequestException;
 import org.eclipse.egit.github.core.service.ContentsService;
 
 import java.io.IOException;

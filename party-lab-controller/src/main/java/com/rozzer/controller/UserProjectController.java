@@ -22,7 +22,7 @@ import java.util.*;
 
 import static com.rozzer.controller.common.ControllerHelper.manager;
 
-@RequestMapping(value = "/userproject")
+@RequestMapping(value = "/api/userproject")
 @RestController
 public class UserProjectController implements EntityController<UserProject> {
 

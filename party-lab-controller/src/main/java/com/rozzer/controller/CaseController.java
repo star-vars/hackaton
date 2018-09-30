@@ -12,7 +12,7 @@ import java.util.List;
 import static com.rozzer.controller.common.ControllerHelper.manager;
 
 @RestController
-@RequestMapping(value = "/developer")
+@RequestMapping(value = "/api/developer")
 public class CaseController implements EntityController<Case> {
 
     @Override
