@@ -1,3 +1,6 @@
-<p>
-  user-tack-view-min works!
-</p>
+<div class="container row h-100 " >
+  <div class="h-100 d-table category_name">
+    <a class="d-table-cell align-middle text-dark" [routerLink]="['/usertask/', usertask.id]">{{ usertask.name }}</a>
+    <label>{{usertask.desc}}</label>
+  </div>
+</div>

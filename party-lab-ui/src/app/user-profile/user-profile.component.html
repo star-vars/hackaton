@@ -1,33 +1,17 @@
-
-<!--<div class="container">
-  <input type="button" class="btn btn-success" value="Create new theme" (click)="popupTheme('edit', null)"/>
-  <input type="button" class="btn btn-success" value="Create new task" [routerLink]="['/task/', -1]"/>
-  my messages
-  my tasks
-</div>
-
-<theme-edit id="theme-popup" class="modal" tabindex="-1" [theme]="currentTheme" role="dialog"></theme-edit>-->
-
 <mat-tab-group dynamicHeight>
   <mat-tab label="Development">
-    <div class="example-large-box mat-elevation-z4 border">
-      User Project 1
-    </div>
-    <div class="example-large-box mat-elevation-z4 border">
-      User Project 2
-    </div>
-    <div class="example-large-box mat-elevation-z4 border">
-      User Project 3
+    <div class="container">
+      <div class="row">
+        <user-tack-view-min *ngFor="let usertask of user.usertasks" [usertask]="usertask"  class="col-sm-3 example-large-box mat-elevation-z4"></user-tack-view-min>
+      </div>
     </div>
   </mat-tab>
   <mat-tab label="My Project">
-    <table>
-      <tr>
-        <td><task-add-button></task-add-button></td>
-      </tr>
-      <tr *ngFor="let task of user.tasks">
-        <td><task-view-min [task]="task"></task-view-min></td>
-      </tr>
-    </table>
+    <div class="container">
+      <div class="row">
+        <task-add-button  class="col-sm-3 example-large-box mat-elevation-z4"></task-add-button>
+        <task-view-min *ngFor="let task of user.tasks" [task]="task"  class="col-sm-3 example-large-box mat-elevation-z4"></task-view-min>
+      </div>
+    </div>
   </mat-tab>
 </mat-tab-group>

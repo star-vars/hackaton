@@ -19,6 +19,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {TaskViewMinComponent} from "./task/task-view-min/task-view-min.component";
 import {TaskAddButtonComponent} from "./task/task-add-button/task-add-button.component";
 import {StartedProjectComponent} from "./started-project/started.project.component";
+import {UserTackViewMinComponent} from "./task/user-tack-view-min/user-tack-view-min.component";
 
 
 @NgModule({
@@ -26,7 +27,7 @@ import {StartedProjectComponent} from "./started-project/started.project.compone
     AppComponent,
     ThemeComponent,  ThemeListComponent, ThemeEditComponent,
     TaskEditComponent,    TaskComponent, TaskViewMinComponent, TaskAddButtonComponent,
-    UserProfileComponent,   UserProfileListComponent, UserButtonComponent,
+    UserProfileComponent,   UserProfileListComponent, UserButtonComponent, UserTackViewMinComponent,
     LoginComponent, StartedProjectComponent
 
 

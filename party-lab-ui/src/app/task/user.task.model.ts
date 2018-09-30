@@ -5,6 +5,7 @@ export class UserTask{
   id: number;
   name: string;
   task: Task;
+  desc: string;
 
   constructor( id:number, name: string, task: Task ){
     this.id = id;

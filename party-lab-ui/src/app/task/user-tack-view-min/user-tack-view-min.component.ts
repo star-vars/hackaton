@@ -1,4 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {UserTask} from "../user.task.model";
+import {TaskService} from "../task.service";
 
 @Component({
   selector: 'user-tack-view-min',
@@ -7,7 +9,9 @@ import {Component, OnInit} from '@angular/core';
 })
 export class UserTackViewMinComponent implements OnInit {
 
-  constructor() { }
+  @Input() usertask: UserTask;
+
+  constructor(private taskService: TaskService) { }
 
   ngOnInit() {
   }

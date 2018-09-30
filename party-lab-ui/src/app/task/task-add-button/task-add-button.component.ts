@@ -17,6 +17,9 @@ export class TaskAddButtonComponent implements OnInit {
   }
 
   addTask(){
+    if (this.tasks == undefined) {
+      this.tasks = [];
+    }
     this.tasks.push(this.taskService.parseJSON(this.taskService.rest.createTask()));
     console.log("task added")
   }
