@@ -1,6 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Task} from "../task.model";
-import {TaskService} from "../task.service";
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'task-add-button',
@@ -9,19 +7,13 @@ import {TaskService} from "../task.service";
 })
 export class TaskAddButtonComponent implements OnInit {
 
-  @Input()tasks: Task[];
-
-  constructor(private taskService: TaskService) { }
+  constructor( private router: Router) { }
 
   ngOnInit() {
   }
 
   addTask(){
-    if (this.tasks == undefined) {
-      this.tasks = [];
-    }
-    this.tasks.push(this.taskService.parseJSON(this.taskService.rest.createTask()));
-    console.log("task added")
+    this.router.navigate(['/task/-1']);
   }
 
 }
