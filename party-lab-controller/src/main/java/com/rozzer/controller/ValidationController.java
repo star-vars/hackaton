@@ -12,7 +12,7 @@ import java.util.Optional;
 
 import static com.rozzer.controller.common.ControllerHelper.manager;
 
-@RequestMapping(value = "/validate")
+@RequestMapping(value = "/api/validate")
 @RestController
 public class ValidationController {
     @RequestMapping(value = "{id}", method = RequestMethod.GET)

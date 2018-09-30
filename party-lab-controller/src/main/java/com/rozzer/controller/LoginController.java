@@ -22,7 +22,7 @@ import java.util.List;
 import static com.rozzer.controller.common.ControllerHelper.manager;
 
 @RestController
-@RequestMapping(value = "/logged")
+@RequestMapping(value = "/api/login")
 public class LoginController {
 
     @Autowired
