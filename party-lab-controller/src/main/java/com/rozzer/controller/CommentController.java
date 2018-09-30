@@ -4,10 +4,7 @@ import com.rozzer.controller.common.EntityController;
 import com.rozzer.manager.CommentManager;
 import com.rozzer.model.Comment;
 import com.rozzer.model.Project;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
@@ -42,7 +39,7 @@ public class CommentController implements EntityController<Comment> {
 
     @Override
     @RequestMapping(method = RequestMethod.PUT)
-    public Comment update(Comment object) {
+    public Comment update(@RequestBody Comment object) {
         object.setDateTime(new Date());
         object.setProject(manager(Project.class).getById(object.getProject().getId()).orElse(null));
         return manager(Comment.class).save(object);

@@ -15,8 +15,8 @@
               {{check.description}}
             </div>
             <div class="col-md-2">
-              <span *ngIf="checkResults[check.id].name === 'Passed'">OK</span>
-              <span *ngIf="checkResults[check.id].name !== 'Passed'">NOK</span>
+              <span *ngIf="checkResults[check.id].name === 'Passed'" class="green"><b>OK</b></span>
+              <span *ngIf="checkResults[check.id].name !== 'Passed'" class="red"><b>NOK</b></span>
             </div>
           </div>
         </div>
@@ -25,7 +25,7 @@
     <div class="col-sm-6">
       <div class="row"><h2>Comments:</h2></div>
       <div class="row" *ngFor="let comment of comments">
-        <div class="col-md-3"><img src="{{comment.user.avatarUrl}}"/></div>
+        <div class="col-md-3"><img [height]="40" [width]="40" src="{{comment.user.avatarUrl}}"/></div>
         <div class="col-md-9">
           <div class="row">
             <strong>{{comment.user.name}}</strong> <span>{{format(comment.datetime)}}</span>
@@ -34,10 +34,13 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-10">
+        <div class="col-sm-2">
+          <img [height]="40" [width]="40" src="{{user.avatarUrl}}" alt="Avatar"/>
+        </div>
+        <div class="col-sm-8">
           <textarea class="form-control" type="text" [(ngModel)]="newComment"></textarea>
         </div>
-        <div class="col-md-2">
+        <div class="col-sm-2">
           <button type="button" class="btn btn-primary" (click)="addComment()">Add</button>
         </div>
 

@@ -6,6 +6,7 @@ import {CommentService} from "../service/comment.service";
 import {CommentModel} from "../model/comment.model";
 import * as moment from "moment";
 import {UserProfileService} from "../user-profile/user-profile.service";
+import {UserProfile} from "../user-profile/user-profile.model";
 
 @Component({
   selector: 'started-project',
@@ -19,6 +20,7 @@ export class StartedProjectComponent implements AfterViewInit {
   checks: Array<any>;
   checkResults: {};
   newComment: string;
+  user: UserProfile;
 
   constructor(private startedProjectService: StartedProjectService,
               private commentService: CommentService,
@@ -34,6 +36,7 @@ export class StartedProjectComponent implements AfterViewInit {
         });
         this.startedProjectService.checks(params['id']).subscribe(checks => this.checks = checks);
         this.startedProjectService.checksStatus(params['id']).subscribe(results => this.checkResults = results);
+        this.user = this.userService.currentUser;
       });
     });
   }
@@ -46,9 +49,10 @@ export class StartedProjectComponent implements AfterViewInit {
     let model = new CommentModel();
     model.text = this.newComment;
     model.user = this.userService.currentUser;
-    model.project = this.project;
+    model.project = this.project.project;
     this.commentService.add(model).subscribe(model => {
       this.comments.push(model);
+      this.newComment = '';
     })
   }
 
