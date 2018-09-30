@@ -4,7 +4,6 @@ import com.rozzer.checks.CheckManager;
 import com.rozzer.checks.result.CheckResult;
 import com.rozzer.common.WorkStatus;
 import com.rozzer.controller.common.EntityController;
-import com.rozzer.manager.CoreObjectManager;
 import com.rozzer.manager.UserProjectManager;
 import com.rozzer.model.Project;
 import com.rozzer.model.Theme;
@@ -26,11 +25,15 @@ import static com.rozzer.controller.common.ControllerHelper.manager;
 @RestController
 public class UserProjectController implements EntityController<UserProject> {
 
-    @Autowired
     private SessionData sessionData;
 
-    @Autowired
     private CheckManager checkManager;
+
+    @Autowired
+    public UserProjectController(SessionData sessionData, CheckManager checkManager) {
+        this.sessionData = sessionData;
+        this.checkManager = checkManager;
+    }
 
     @Override
     @RequestMapping(value = "/all", method = RequestMethod.GET)
@@ -40,12 +43,16 @@ public class UserProjectController implements EntityController<UserProject> {
 
     @RequestMapping(value = "/all/{page}", method = RequestMethod.GET)
     public ListResult<UserProject> getAllByPage(@PathVariable Integer page) {
-        return ListResult.of(manager(UserProject.class).getAllByPage(EntityController.createPage(page, 4)), manager(UserProject.class).countAll());
+        return ListResult.of(manager(UserProject.class)
+                .getAllByPage(
+                        EntityController.createPage(page, 4)), manager(UserProject.class)
+                .countAll());
     }
 
     @RequestMapping(value = "pick/{projectId}", method = RequestMethod.GET)
     public UserProject createFromProject(@PathVariable Long projectId) {
-        Project project = manager(Project.class).getById(projectId).orElseThrow(() -> new RuntimeException("Object not found"));
+        Project project = manager(Project.class).getById(projectId)
+                .orElseThrow(() -> new RuntimeException("Project not found by id:" + projectId));
         try {
             RepositoryService repositoryService = new RepositoryService(sessionData.getGhClient());
             String prName = sessionData.getUser().getName() + " " + project.getName();
@@ -90,29 +97,31 @@ public class UserProjectController implements EntityController<UserProject> {
 
     @RequestMapping(value = "myByStatus/{status}", method = RequestMethod.GET)
     public List<UserProject> myByStatus(@PathVariable WorkStatus status) {
-        return manager(UserProject.class, UserProjectManager.class).findByUserAndStatus(sessionData.getUser(), status);
+        return manager(UserProject.class, UserProjectManager.class)
+                .findByUserAndStatus(sessionData.getUser(), status);
     }
 
     @RequestMapping(value = "myByStatus/all", method = RequestMethod.GET)
     public List<UserProject> myByStatus() {
-        return manager(UserProject.class, UserProjectManager.class).findByUser(sessionData.getUser());
+        return manager(UserProject.class, UserProjectManager.class)
+                .findByUser(sessionData.getUser());
     }
 
     @RequestMapping(value = "projectPhases/{projectId}")
     public Map<String, CheckResult> checkProjectPhases(@PathVariable Long projectId) {
         Optional<UserProject> project = manager(UserProject.class).getById(projectId);
         Map<String, CheckResult> results = new HashMap<>();
-        if (project.isPresent()) {
-            checkManager.getChecks(project.get()).forEach(check -> results.put(check.getId(), check.performCheck(sessionData)));
-            return results;
-        } else {
+        if (!project.isPresent()) {
             return Collections.emptyMap();
         }
+        checkManager.getChecks(project.get())
+                .forEach(check -> results.put(check.getId(), check.performCheck(sessionData)));
+        return results;
     }
 
     @GetMapping("/theme/{theme}")
     public List<UserProject> getUserProjectByThemes(@PathVariable String theme) {
-        List<Theme> themeList = CoreObjectManager.getInstance().getManager(Theme.class).getByName(theme);
+        List<Theme> themeList = manager(Theme.class).getByName(theme);
         Theme aTheme = themeList.stream().findFirst().orElse(new Theme(theme));
         return manager(UserProject.class, UserProjectManager.class).findByTheme(aTheme);
     }

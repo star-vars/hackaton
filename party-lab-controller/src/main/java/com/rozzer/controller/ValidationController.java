@@ -18,12 +18,8 @@ public class ValidationController {
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
     public Report validate(@PathVariable String id) {
         Optional<UserProject> userProject = manager(UserProject.class).getById(new Long(id));
-        UserProject project;
-        if (!userProject.isPresent()){
-            throw new RuntimeException("User Project is not present");
-        } else {
-            project = userProject.get();
-        }
+        UserProject project = userProject.orElseThrow(
+                () -> new RuntimeException("User Project is not present"));
         return Reporter.getInstance().checkProject(project);
     }
 }

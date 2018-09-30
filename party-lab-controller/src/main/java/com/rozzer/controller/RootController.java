@@ -17,16 +17,17 @@ public class RootController {
 
     private static final Random RANDOM = new SecureRandom();
     private final UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl("https://github.com/login/oauth/authorize");
-    @Autowired
-    private SessionDataImpl sessionData;
+    private final SessionDataImpl sessionData;
 
     @Autowired
     public RootController(@Value("${api.client_id}") String clientId,
                           @Value("${api.scope}") String scope,
-                          @Value("${api.redirect_uri}") String redirectUri) {
+                          @Value("${api.redirect_uri}") String redirectUri,
+                          SessionDataImpl sessionData) {
         builder.queryParam("client_id", clientId);
         builder.queryParam("scope", scope);
         builder.queryParam("redirect_uri", redirectUri);
+        this.sessionData = sessionData;
     }
 
     @RequestMapping("/")

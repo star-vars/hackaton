@@ -13,7 +13,7 @@ public interface EntityController<T> {
     T update(T object);
     void delete(T object);
 
-    public static Pageable createPage(int page, int size) {
+    static Pageable createPage(int page, int size) {
         return PageRequest.of(page - 1, size);
     }
 
