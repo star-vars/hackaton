@@ -9,7 +9,6 @@ import com.rozzer.model.Theme;
 import com.rozzer.model.UserProject;
 import com.rozzer.spring.repositories.UserProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -77,7 +76,6 @@ public class UserProjectManagerImpl implements UserProjectManager {
         return repository.findByUserAndStatus(user, status);
     }
 
-
     @Override
     public List<UserProject> findByUser(PLUser user) {
         return repository.findByUser(user);
@@ -88,5 +86,8 @@ public class UserProjectManagerImpl implements UserProjectManager {
         return repository.findAllByProject_Themes(theme);
     }
 
-
+    @Override
+    public List<UserProject> findByProjectId(Long projectId) {
+        return repository.findAllByProject_Id(projectId);
+    }
 }

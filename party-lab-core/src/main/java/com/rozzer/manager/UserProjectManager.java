@@ -12,5 +12,6 @@ public interface UserProjectManager extends Manager<UserProject> {
     List<UserProject> findByUserAndStatus(PLUser user, WorkStatus status);
     List<UserProject> findByUser(PLUser user);
     List<UserProject> findByTheme(Theme theme);
+    List<UserProject> findByProjectId(Long projectId);
 
 }

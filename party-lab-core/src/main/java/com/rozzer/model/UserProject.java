@@ -3,10 +3,7 @@ package com.rozzer.model;
 import com.rozzer.common.AbstractSaved;
 import com.rozzer.common.WorkStatus;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity(name = "user_projects")
@@ -22,6 +19,11 @@ public class UserProject extends AbstractSaved {
     private String repo;
     private String repoUrl;
     private WorkStatus status;
+
+    @ElementCollection
+    @CollectionTable(name = "User_Project_Likers", joinColumns = @JoinColumn(name = "user_project_id"))
+    @Column(name = "user_Id")
+    private List<Long> likerIds;
 
     @Transient
     private List<Case> userCases;

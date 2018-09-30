@@ -2,6 +2,7 @@ package com.rozzer.spring.repositories;
 
 import com.rozzer.common.WorkStatus;
 import com.rozzer.model.PLUser;
+import com.rozzer.model.Project;
 import com.rozzer.model.Theme;
 import com.rozzer.model.UserProject;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -14,5 +15,6 @@ public interface UserProjectRepository extends PagingAndSortingRepository<UserPr
     List<UserProject> findByUser(PLUser user);
     List<UserProject> findAllByName(String name);
     List<UserProject> findAllByProject_Themes(Theme theme);
+    List<UserProject> findAllByProject_Id(Long projectId);
 
 }

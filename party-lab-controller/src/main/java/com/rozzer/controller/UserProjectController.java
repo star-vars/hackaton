@@ -1,6 +1,5 @@
 package com.rozzer.controller;
 
-import com.google.gson.Gson;
 import com.rozzer.checks.CheckManager;
 import com.rozzer.checks.result.CheckResult;
 import com.rozzer.common.WorkStatus;

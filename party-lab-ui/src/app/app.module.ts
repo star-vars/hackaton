@@ -18,6 +18,7 @@ import {UserButtonComponent} from "./user-profile/user-button/user-button.compon
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {TaskViewMinComponent} from "./task/task-view-min/task-view-min.component";
 import {TaskAddButtonComponent} from "./task/task-add-button/task-add-button.component";
+import {StartedProjectComponent} from "./started-project/started.project.component";
 
 
 @NgModule({
@@ -26,7 +27,7 @@ import {TaskAddButtonComponent} from "./task/task-add-button/task-add-button.com
     ThemeComponent,  ThemeListComponent, ThemeEditComponent,
     TaskEditComponent,    TaskComponent, TaskViewMinComponent, TaskAddButtonComponent,
     UserProfileComponent,   UserProfileListComponent, UserButtonComponent,
-    LoginComponent
+    LoginComponent, StartedProjectComponent
 
 
   ],
