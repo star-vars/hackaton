@@ -2,6 +2,7 @@ package com.rozzer.controller;
 
 import com.rozzer.controller.common.EntityController;
 import com.rozzer.model.Theme;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,8 +29,8 @@ public class ThemeController implements EntityController<Theme> {
     }
 
     @Override
-    @RequestMapping(method = RequestMethod.GET)
-    public Theme read(String id) {
+    @RequestMapping(value = "{id}", method = RequestMethod.GET)
+    public Theme read(@PathVariable String id) {
         return manager(Theme.class).getById(new Long(id)).orElse(new Theme());
     }
 

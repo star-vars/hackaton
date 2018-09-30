@@ -2,6 +2,7 @@ package com.rozzer.controller;
 
 import com.rozzer.controller.common.EntityController;
 import com.rozzer.model.Case;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,8 +28,8 @@ public class CaseController implements EntityController<Case> {
     }
 
     @Override
-    @RequestMapping(method = RequestMethod.GET)
-    public Case read(String id) {
+    @RequestMapping(value = "{id}", method = RequestMethod.GET)
+    public Case read(@PathVariable String id) {
         return manager(Case.class).getById(new Long(id)).orElse(new Case());
     }
 

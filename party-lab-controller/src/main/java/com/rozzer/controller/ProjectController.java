@@ -44,8 +44,8 @@ public class ProjectController implements EntityController<Project> {
     }
 
     @Override
-    @RequestMapping(method = RequestMethod.GET)
-    public Project read(String id) {
+    @RequestMapping(value = "{id}", method = RequestMethod.GET)
+    public Project read(@PathVariable String id) {
         return manager(Project.class).getById(new Long(id)).orElse(new Project());
     }
 

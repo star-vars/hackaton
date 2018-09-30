@@ -2,6 +2,7 @@ package com.rozzer.controller;
 
 import com.rozzer.controller.common.EntityController;
 import com.rozzer.model.PLUser;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,7 +12,7 @@ import java.util.List;
 import static com.rozzer.controller.common.ControllerHelper.manager;
 
 @RestController
-@RequestMapping(value = "/user")
+@RequestMapping(value = "/users")
 public class UserController implements EntityController<PLUser> {
 
     @Override
@@ -27,8 +28,8 @@ public class UserController implements EntityController<PLUser> {
     }
 
     @Override
-    @RequestMapping(method = RequestMethod.GET)
-    public PLUser read(String id) {
+    @RequestMapping(value = "{id}", method = RequestMethod.GET)
+    public PLUser read(@PathVariable String id) {
         return manager(PLUser.class).getById(new Long(id)).orElse(new PLUser());
     }
 
