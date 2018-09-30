@@ -5,6 +5,7 @@ import {StartedProjectModel} from "../model/started.project.model";
 import {CommentService} from "../service/comment.service";
 import {CommentModel} from "../model/comment.model";
 import * as moment from "moment";
+import {UserProfileService} from "../user-profile/user-profile.service";
 
 @Component({
   selector: 'started-project',
@@ -17,12 +18,12 @@ export class StartedProjectComponent implements AfterViewInit {
   comments: Array<CommentModel>;
   checks: Array<any>;
   checkResults: {};
+  newComment: string;
 
   constructor(private startedProjectService: StartedProjectService,
               private commentService: CommentService,
-              private route: ActivatedRoute) {
-
-  }
+              private userService: UserProfileService,
+              private route: ActivatedRoute) {}
 
   ngAfterViewInit(): void {
     this.route.params.subscribe(params => {
@@ -39,6 +40,16 @@ export class StartedProjectComponent implements AfterViewInit {
 
   format(date: Date) : string {
     return moment(date).format('MMMM Do YYYY, h:mm:ss');
+  }
+
+  addComment() : void {
+    let model = new CommentModel();
+    model.text = this.newComment;
+    model.user = this.userService.currentUser;
+    model.project = this.project;
+    this.commentService.add(model).subscribe(model => {
+      this.comments.push(model);
+    })
   }
 
 }

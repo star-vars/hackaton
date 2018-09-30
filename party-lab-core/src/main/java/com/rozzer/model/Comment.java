@@ -57,4 +57,12 @@ public class Comment extends AbstractSaved {
     public Set<PLUser> getLikers() {
         return likers;
     }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
 }

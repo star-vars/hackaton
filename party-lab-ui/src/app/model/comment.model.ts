@@ -3,5 +3,6 @@ export class CommentModel {
   user: any;
   text: string;
   datetime: Date;
+  project: any;
 
 }

@@ -35,4 +35,8 @@ export class CommentService {
   listByProject(id: number) : Observable<Array<CommentModel>> {
     return this.http.get(this.endpoint + '/byProject/' + id).pipe(map(this.extractList));
   }
+
+  add(model: CommentModel) : Observable<CommentModel> {
+    return this.http.put(this.endpoint, model).pipe(map(this.extractData));
+  }
 }
