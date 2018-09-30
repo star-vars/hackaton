@@ -31,8 +31,8 @@ example-large-box {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 16px;
-  padding: 16px;
+  margin: 30px;
+  padding: 30px;
   border-radius: 8px;
 }
 
