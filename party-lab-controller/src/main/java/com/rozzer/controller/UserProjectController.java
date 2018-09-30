@@ -44,8 +44,9 @@ public class UserProjectController implements EntityController<UserProject> {
                 new Gson().toJson(manager(Project.class).getAllByPage(Integer.valueOf(page))) +"}";
     }
 
-    @RequestMapping(value = "pick", method = RequestMethod.POST)
-    public UserProject createFromProject(Project project) {
+    @RequestMapping(value = "pick/{projectId}", method = RequestMethod.GET)
+    public UserProject createFromProject(@PathVariable Long projectId) {
+        Project project = manager(Project.class).getById(projectId).orElseThrow(() -> new RuntimeException("Object not found"));
         try {
             RepositoryService repositoryService = new RepositoryService(sessionData.getGhClient());
             String prName = sessionData.getUser().getName() + " " + project.getName();
@@ -110,8 +111,8 @@ public class UserProjectController implements EntityController<UserProject> {
         }
     }
 
-    @GetMapping("/theme{theme}")
-    public List<UserProject> getUserProjectByThemes(@RequestParam String theme) {
+    @GetMapping("/theme/{theme}")
+    public List<UserProject> getUserProjectByThemes(@PathVariable String theme) {
         List<Theme> themeList = CoreObjectManager.getInstance().getManager(Theme.class).getByName(theme);
         Theme aTheme = themeList.stream().findFirst().orElse(new Theme(theme));
         return manager(UserProject.class, UserProjectManager.class).findByTheme(aTheme);

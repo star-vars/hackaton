@@ -1,7 +1,7 @@
 package com.rozzer.common;
 
 public enum CaseType {
-    UNIT_TEST("unit_test"), USE_CASE("use_case"), CODE_STYLE("code_style");
+    UNIT_TEST("unit_test"), USE_CASE("use_case"), CODE_STYLE("code_style"), TEST_CASE("test_case");
 
     private String type;
 

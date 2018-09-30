@@ -2,10 +2,12 @@ package com.rozzer.model;
 
 import com.rozzer.common.AbstractSaved;
 import com.rozzer.common.WorkStatus;
+import org.springframework.data.annotation.Transient;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import java.util.List;
 
 @Entity(name = "user_projects")
 public class UserProject extends AbstractSaved {
@@ -20,6 +22,9 @@ public class UserProject extends AbstractSaved {
     private String repo;
     private String repoUrl;
     private WorkStatus status;
+
+    @Transient
+    private List<Case> userCases;
 
     public UserProject() {
     }
@@ -66,5 +71,13 @@ public class UserProject extends AbstractSaved {
 
     public void setStatus(WorkStatus status) {
         this.status = status;
+    }
+
+    public List<Case> getUserCases() {
+        return userCases;
+    }
+
+    public void setUserCases(List<Case> userCases) {
+        this.userCases = userCases;
     }
 }

@@ -11,11 +11,11 @@ public abstract class RepeatableCheck extends ComplexCheck {
         this.innerCheck = innerCheck;
     }
 
-    protected abstract int computeCapacity();
+    protected abstract int computeCapacity(SessionData sessionData);
 
     public final ComplexCheckResult performCheck(int iteration, SessionData sessionData) {
         innerCheck.setProject(getProject());
-        ComplexCheckResult complexCheckResult = new ComplexCheckResult(computeCapacity());
+        ComplexCheckResult complexCheckResult = new ComplexCheckResult(computeCapacity(sessionData));
         for (int i = 0; i < complexCheckResult.getCapacity(); i++) {
             complexCheckResult.getResults().add(innerCheck.performCheck(i, sessionData));
         }

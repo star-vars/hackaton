@@ -174,11 +174,11 @@ public class Application {
         aCase.setName(name);
         aCase.setType(type);
         if (type.equals(CaseType.USE_CASE)){
-            aCase.setCaseBody(new CucumberCase());
+            aCase.setBody("TEST BODY");
         }  else if(type.equals(CaseType.UNIT_TEST)) {
-            aCase.setCaseBody(new JSONObject());
+            aCase.setBody("TEST BODY");
         } else if(type.equals(CaseType.CODE_STYLE)) {
-            aCase.setCaseBody(new JSONObject());
+            aCase.setBody("TEST BODY");
         }
         CoreObjectManager.getInstance().getManager(Case.class).save(aCase);
         return aCase;

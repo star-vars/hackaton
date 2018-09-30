@@ -4,9 +4,12 @@ package com.rozzer.controller;
 import com.google.common.base.Strings;
 import com.google.gson.Gson;
 import com.rozzer.controller.common.EntityController;
+import com.rozzer.gh.ext.NewCommit;
+import com.rozzer.gh.ext.service.UpdatebaleContentsService;
 import com.rozzer.manager.CoreObjectManager;
 import com.rozzer.manager.ProjectManager;
 import com.rozzer.model.Project;
+import com.rozzer.model.ProjectStructure;
 import com.rozzer.model.Theme;
 import com.rozzer.session.SessionData;
 import org.eclipse.egit.github.core.Repository;
@@ -16,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 
 import static com.rozzer.controller.common.ControllerHelper.manager;
@@ -36,7 +40,7 @@ public class ProjectController implements EntityController<Project> {
     @RequestMapping(value = "/all/{page}", method = RequestMethod.GET)
     public String getAllByPage(@PathVariable String page) {
         return "{\"size\": " + manager(Project.class).getAll().size() + ", \"projects\" :" +
-                new Gson().toJson(manager(Project.class).getAllByPage(Integer.valueOf(page))) +"}";
+                new Gson().toJson(manager(Project.class).getAllByPage(Integer.valueOf(page))) + "}";
     }
 
     @Override
@@ -62,11 +66,48 @@ public class ProjectController implements EntityController<Project> {
             Repository repository = null;
             try {
                 repository = repositoryService.getRepository(sessionData.getUser().getLogin(), object.getRepo());
-            } catch (RequestException ignored) {}
+            } catch (RequestException ignored) {
+            }
             if (repository == null) {
                 repository = repositoryService.createRepository(new Repository().setName(object.getRepo()));
             }
             object.setRepoUrl(repository.getUrl());
+            UpdatebaleContentsService contentsService = new UpdatebaleContentsService(sessionData.getGhClient());
+            contentsService.createFile(repository,
+                    ProjectStructure.TEST_CASES_FOLDER + "/.gitkeep",
+                    new NewCommit()
+                            .setContent(Base64.getEncoder().encodeToString("".getBytes()))
+                            .setMessage("Auto-create test cases folder")
+            );
+            contentsService.createFile(repository,
+                    ProjectStructure.DESIGN_FOLDER + "/.gitkeep",
+                    new NewCommit()
+                            .setContent(Base64.getEncoder().encodeToString("".getBytes()))
+                            .setMessage("Auto-create design folder")
+            );
+            contentsService.createFile(repository,
+                    ProjectStructure.ARCHITECTURE_FOLDER + "/.gitkeep",
+                    new NewCommit()
+                            .setContent(Base64.getEncoder().encodeToString("".getBytes()))
+                            .setMessage("Auto-create architecture folder")
+            );
+            contentsService.createFile(repository,
+                    ProjectStructure.SRC_MAIN_FOLDER + "/.gitkeep",
+                    new NewCommit()
+                            .setContent(Base64.getEncoder().encodeToString("".getBytes()))
+                            .setMessage("Auto-create sources folder")
+            );
+            contentsService.createFile(repository,
+                    ProjectStructure.SRC_TESTS_FOLDER + "/.gitkeep",
+                    new NewCommit()
+                            .setContent(Base64.getEncoder().encodeToString("".getBytes()))
+                            .setMessage("Auto-create autotests folder")
+            );
+            contentsService.createFile(repository, "README.md",
+                    new NewCommit()
+                            .setContent(Base64.getEncoder().encodeToString("This is readme file with sample task description".getBytes()))
+                            .setMessage("Auto-create readme folder")
+            );
             return manager(Project.class).save(object);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -79,8 +120,8 @@ public class ProjectController implements EntityController<Project> {
         manager(Project.class).delete(object);
     }
 
-    @GetMapping("/theme{theme}")
-    public List<Project> getProjectByThemes(@RequestParam String theme) {
+    @GetMapping("/theme/{theme}")
+    public List<Project> getProjectByThemes(@PathVariable String theme) {
         List<Theme> themeList = CoreObjectManager.getInstance().getManager(Theme.class).getByName(theme);
         Theme aTheme = themeList.stream().findFirst().orElse(new Theme(theme));
         return manager(Project.class, ProjectManager.class).findByTheme(aTheme);

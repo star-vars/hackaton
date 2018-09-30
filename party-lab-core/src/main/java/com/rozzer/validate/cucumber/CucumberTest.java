@@ -18,7 +18,7 @@ import org.junit.runner.RunWith;
 )
 public class CucumberTest {
     @Test
-    public void test(CucumberCase cucumberCase) {
+    public void test(String test) {
 
     }
 }

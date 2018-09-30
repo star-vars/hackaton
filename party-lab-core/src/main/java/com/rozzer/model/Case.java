@@ -10,7 +10,9 @@ import javax.persistence.Entity;
 public class Case extends AbstractSaved {
 
     private CaseType type;
-    private JSONObject caseBody;
+    private String description;
+    private String body;
+    private String fileName;
 
     public Case() {
     }
@@ -19,19 +21,35 @@ public class Case extends AbstractSaved {
         super(name);
     }
 
-    public JSONObject getCaseBody() {
-        return caseBody;
-    }
-
-    public void setCaseBody(JSONObject caseBody) {
-        this.caseBody = caseBody;
-    }
-
     public CaseType getType() {
         return type;
     }
 
     public void setType(CaseType type) {
         this.type = type;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 }
