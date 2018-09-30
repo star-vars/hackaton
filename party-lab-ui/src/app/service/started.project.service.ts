@@ -3,6 +3,7 @@ import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {map} from 'rxjs/operators';
 import {StartedProjectModel} from "../model/started.project.model";
+import {CommentModel} from "../model/comment.model";
 
 @Injectable({
   providedIn: 'root'
@@ -24,12 +25,25 @@ export class StartedProjectService {
     return res || {};
   }
 
+  private extractList(res: Array<any>) : Array<StartedProjectModel> {
+    let arr : Array<StartedProjectModel> = [];
+    res.forEach(value => {
+      let m : StartedProjectModel = new StartedProjectModel();
+      arr.push(Object.assign(m, value));
+    });
+    return arr;
+  }
+
   private extractAnyList(res: Array<any>) : Array<any> {
     return res || [];
   }
 
   one(id : number) : Observable<StartedProjectModel> {
     return this.http.get(this.endpoint + '/' + id).pipe(map(this.extractData));
+  }
+
+  listMy() : Observable<Array<StartedProjectModel>> {
+    return this.http.get(this.endpoint + '/my/all').pipe(map(this.extractList));
   }
 
   checks(id : number) : Observable<any> {

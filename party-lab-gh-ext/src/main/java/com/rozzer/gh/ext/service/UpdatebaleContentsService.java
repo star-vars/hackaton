@@ -45,6 +45,18 @@ public class UpdatebaleContentsService extends GitHubService {
                 uri.append('/');
             uri.append(path);
         }
+        if (commit.getAuthor().getEmail() == null) {
+            commit.getAuthor().setEmail("");
+        }
+        if (commit.getAuthor().getName() == null) {
+            commit.getAuthor().setName("");
+        }
+        if (commit.getCommitter().getEmail() == null) {
+            commit.getCommitter().setEmail("");
+        }
+        if (commit.getCommitter().getName() == null) {
+            commit.getCommitter().setName("");
+        }
         return client.put(uri.toString(), commit, CommitResponse.class);
     }
 

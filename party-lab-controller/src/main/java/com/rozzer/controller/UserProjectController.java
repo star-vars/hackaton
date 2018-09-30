@@ -103,7 +103,7 @@ public class UserProjectController implements EntityController<UserProject> {
                 .findByUserAndStatus(sessionData.getUser(), status);
     }
 
-    @RequestMapping(value = "myByStatus/all", method = RequestMethod.GET)
+    @RequestMapping(value = "my/all", method = RequestMethod.GET)
     public List<UserProject> myByStatus() {
         return manager(UserProject.class, UserProjectManager.class)
                 .findByUser(sessionData.getUser());

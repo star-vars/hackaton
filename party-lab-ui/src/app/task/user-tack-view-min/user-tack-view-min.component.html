@@ -1,6 +1,6 @@
 <div class="container row h-100 " >
   <div class="h-100 d-table category_name">
-    <a class="d-table-cell align-middle text-dark" [routerLink]="['/usertask/', usertask.id]">{{ usertask.name }}</a>
-    <label>{{usertask.desc}}</label>
+    <a class="d-table-cell align-middle text-dark" [routerLink]="['/started-project/', usertask.id]">{{ usertask.project.name }}</a>
+    <label>{{usertask.project.specification}}</label>
   </div>
 </div>
