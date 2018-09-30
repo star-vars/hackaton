@@ -50,8 +50,8 @@ public class ProjectController implements EntityController<Project> {
     }
 
     @Override
-    @RequestMapping(value = "", method = RequestMethod.PUT, consumes="application/json")
-    public Project update(Project object) {
+    @RequestMapping(method = RequestMethod.PUT)
+    public Project update(@RequestBody Project object) {
         try {
             RepositoryService repositoryService = new RepositoryService();
             Repository repository = repositoryService.getRepository(sessionData.getUser().getLogin(), object.getRepo());

@@ -38,7 +38,7 @@ export class RestService {
   }
 
   updateTask(task: any) : Observable<any> {
-    return this.http.put(this.endpoint + 'project', task);
+    return this.http.post(this.endpoint + 'project', task).pipe();
   }
 
   getTasksByPage(page): Observable<any> {
