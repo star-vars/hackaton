@@ -13,14 +13,14 @@ import {TaskEditComponent} from './task/task-edit/task-edit.component';
 import {UserProfileComponent} from './user-profile/user-profile.component';
 import {UserProfileListComponent} from './user-profile/user-profile-list/user-profile-list.component';
 import {routingModule} from "./routing.module";
-import {LoginComponent} from "./login/login.component";
 import {UserButtonComponent} from "./user-profile/user-button/user-button.component";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {TaskViewMinComponent} from "./task/task-view-min/task-view-min.component";
 import {TaskAddButtonComponent} from "./task/task-add-button/task-add-button.component";
 import {StartedProjectComponent} from "./started-project/started.project.component";
 import {UserTackViewMinComponent} from "./task/user-tack-view-min/user-tack-view-min.component";
-
+import {CommentaryListComponent} from "./commentary/commentary-list/commentary-list.component"
+import {CommentaryComponent} from "./commentary/commentary/commentary.component"
 
 @NgModule({
   declarations: [
@@ -28,7 +28,7 @@ import {UserTackViewMinComponent} from "./task/user-tack-view-min/user-tack-view
     ThemeComponent,  ThemeListComponent, ThemeEditComponent,
     TaskEditComponent,    TaskComponent, TaskViewMinComponent, TaskAddButtonComponent,
     UserProfileComponent,   UserProfileListComponent, UserButtonComponent, UserTackViewMinComponent,
-    LoginComponent, StartedProjectComponent
+    StartedProjectComponent,CommentaryListComponent,CommentaryComponent
 
 
   ],
