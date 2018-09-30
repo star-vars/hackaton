@@ -13,31 +13,26 @@ declare var $: any;
 })
 export class ThemeListComponent implements OnInit {
 
-  previousTheme: Theme;
+  listOfTasks: any[];
 
-  constructor(private themes: ThemeService, private tasks: TaskService) { }
+  current_page : number = 0;
+
+  constructor( private tasks: TaskService ) { }
 
   ngOnInit() {
+      this.tasksByPage('forward');
   }
 
-  setPrevTheme(theme: Theme){
-    if(this.previousTheme == theme){
-      return false;
+  tasksByPage(way:string){
+    this.listOfTasks = [];
+    if (way == 'back'){
+      this.current_page = this.current_page - 1;
     } else {
-      this.previousTheme = theme
-      return true;
+      this.current_page = this.current_page + 1;
     }
-  }
-
-  showOrHide(selectorClass:string){
-    $(".theme_"+selectorClass.toLowerCase().replace(' ', '_').trim())
-    .each(function( a, b ) {
-      if( b.style.display == 'none' ){
-        b.style.visibility = "table-cell";
-      }else{
-        b.style.visibility = "none";
-      }
-      return;
+    this.tasks.getByPage(this.current_page).forEach( (data:any[]) => {
+         this.listOfTasks.push(this.tasks.parseJSON(data));
     });
   }
+
 }

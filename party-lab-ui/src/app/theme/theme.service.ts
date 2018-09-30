@@ -12,6 +12,4 @@ export class ThemeService {
     this.themes.push( new Theme('Java Patterns',' Join the Four! ') );
     this.themes.push( new Theme('Java Basics',' To start with ') );
   }
-
-
 }
