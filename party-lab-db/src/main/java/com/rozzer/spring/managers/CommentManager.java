@@ -39,8 +39,8 @@ public class CommentManager implements Manager<Comment> {
     }
 
     @Override
-    public void save(Comment saved) {
-        repository.save(saved);
+    public Comment save(Comment saved) {
+        return repository.save(saved);
     }
 
     @Override

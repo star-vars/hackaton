@@ -23,12 +23,12 @@ export class RestService {
   }
 
   getUsers(): Observable<any> {
-    return this.http.get(this.endpoint + 'user/all').pipe(
+    return this.http.get(this.endpoint + 'users/all').pipe(
       map(this.extractData));
   }
 
   getUser(id): Observable<any> {
-    return this.http.get(this.endpoint + 'user?=' + id).pipe(
+    return this.http.get(this.endpoint + 'users/' + id).pipe(
       map(this.extractData));
   }
 
@@ -37,13 +37,17 @@ export class RestService {
       map(this.extractData));
   }
 
+  updateTask(task: any) : Observable<any> {
+    return this.http.post(this.endpoint + 'project', task).pipe();
+  }
+
   getTasksByPage(page): Observable<any> {
     return this.http.get(this.endpoint + 'project/all/' + page).pipe(
       map(this.extractData));
   }
 
   getTask(id): Observable<any> {
-    return this.http.get(this.endpoint + 'project?=' + id).pipe(
+    return this.http.get(this.endpoint + 'project/' + id).pipe(
       map(this.extractData));
   }
 /*

@@ -3,6 +3,7 @@ import { Task } from './task.model';
 import { RestService } from '../rest.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserProfileService } from '../user-profile/user-profile.service'
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,10 @@ export class TaskService {
               this.tasks.push(this.parseJSON(data));
           })
       });
+  }
+
+  updateTask(task: Task) : Observable<any> {
+    return this.rest.updateTask(task);
   }
 
   parseJSON( input: object ){

@@ -36,8 +36,8 @@ public class ThemeController implements EntityController<Theme> {
 
     @Override
     @RequestMapping(method = RequestMethod.PUT)
-    public void update(Theme object) {
-        manager(Theme.class).save(object);
+    public Theme update(Theme object) {
+        return manager(Theme.class).save(object);
     }
 
     @Override

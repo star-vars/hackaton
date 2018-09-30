@@ -35,8 +35,8 @@ public class CaseController implements EntityController<Case> {
 
     @Override
     @RequestMapping(method = RequestMethod.PUT)
-    public void update(Case object) {
-        manager(Case.class).save(object);
+    public Case update(Case object) {
+        return manager(Case.class).save(object);
     }
 
     @Override

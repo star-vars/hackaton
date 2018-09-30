@@ -39,8 +39,8 @@ public class PLUserManagerImpl implements PLUserManager {
     }
 
     @Override
-    public void save(PLUser saved) {
-        repository.save(saved);
+    public PLUser save(PLUser saved) {
+        return repository.save(saved);
     }
 
     @Override

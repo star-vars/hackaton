@@ -78,8 +78,8 @@ public class UserProjectController implements EntityController<UserProject> {
 
     @Override
     @RequestMapping(method = RequestMethod.PUT)
-    public void update(UserProject object) {
-        manager(UserProject.class).save(object);
+    public UserProject update(UserProject object) {
+        return manager(UserProject.class).save(object);
     }
 
     @Override

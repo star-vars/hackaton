@@ -38,8 +38,8 @@ public class ThemeManager implements Manager<Theme> {
     }
 
     @Override
-    public void save(Theme saved) {
-        repository.save(saved);
+    public Theme save(Theme saved) {
+        return repository.save(saved);
     }
 
     @Override

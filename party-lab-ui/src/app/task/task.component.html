@@ -1,4 +1,10 @@
 <div class="container">
+  <div>
+    <button type="button" class="btn btn-primary btn-lg" (click)="createOrUpdate()">
+      <span *ngIf="!canCreate">Update task</span>
+      <span *ngIf="canCreate">Create task</span>
+    </button>
+  </div>
   <div class="form-group">
     <label>Name:</label>
     <input class="form-control" type="text" [(ngModel)]="task.name" />
@@ -15,11 +21,11 @@
     <label>Test Cases:</label>
     <textarea class="form-control" type="text" [(ngModel)]="task.testCases"></textarea>
   </div>
-  <div class="form-group">
+  <div *ngIf="!canCreate" class="form-group">
     <label>Comments:</label>
     <textarea class="form-control" type="text" [(ngModel)]="task.comments"></textarea>
   </div>
-  <div class="form-group">
+  <div *ngIf="!canCreate" class="form-group">
     <label>Rating:</label>
     <input class="form-control" type="text" [(ngModel)]="task.rating"/>
   </div>
@@ -27,11 +33,6 @@
     <label>Tags:</label>
     <input class="form-control" type="text" [(ngModel)]="task.tags"/>
   </div>
-
-
-
-
-
 
 
 </div>

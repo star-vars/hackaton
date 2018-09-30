@@ -39,8 +39,8 @@ public class ProjectManagerImpl implements ProjectManager {
     }
 
     @Override
-    public void save(Project saved) {
-        repository.save(saved);
+    public Project save(Project saved) {
+        return repository.save(saved);
     }
 
     @Override
