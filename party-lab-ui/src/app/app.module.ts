@@ -16,13 +16,15 @@ import {routingModule} from "./routing.module";
 import {LoginComponent} from "./login/login.component";
 import {UserButtonComponent} from "./user-profile/user-button/user-button.component";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {TaskViewMinComponent} from "./task/task-view-min/task-view-min.component";
+import {TaskAddButtonComponent} from "./task/task-add-button/task-add-button.component";
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ThemeComponent,  ThemeListComponent, ThemeEditComponent,
-    TaskEditComponent,    TaskComponent,
+    TaskEditComponent,    TaskComponent, TaskViewMinComponent, TaskAddButtonComponent,
     UserProfileComponent,   UserProfileListComponent, UserButtonComponent,
     LoginComponent
 

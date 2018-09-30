@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { Task } from './task.model';
-import { RestService } from '../rest.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { UserProfileService } from '../user-profile/user-profile.service'
+import {Injectable} from '@angular/core';
+import {Task} from './task.model';
+import {RestService} from '../rest.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {UserProfileService} from '../user-profile/user-profile.service'
 import {Observable} from "rxjs";
 
 @Injectable({
@@ -23,6 +23,8 @@ export class TaskService {
   updateTask(task: Task) : Observable<any> {
     return this.rest.updateTask(task);
   }
+
+
 
   parseJSON( input: object ){
         var c  = new Task( input['id'], input['name'], input['desc']  );

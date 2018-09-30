@@ -8,6 +8,7 @@ import com.rozzer.gh.ext.NewCommit;
 import com.rozzer.gh.ext.service.UpdatebaleContentsService;
 import com.rozzer.manager.CoreObjectManager;
 import com.rozzer.manager.ProjectManager;
+import com.rozzer.model.PLUser;
 import com.rozzer.model.Project;
 import com.rozzer.model.ProjectStructure;
 import com.rozzer.model.Theme;
@@ -125,6 +126,12 @@ public class ProjectController implements EntityController<Project> {
         List<Theme> themeList = CoreObjectManager.getInstance().getManager(Theme.class).getByName(theme);
         Theme aTheme = themeList.stream().findFirst().orElse(new Theme(theme));
         return manager(Project.class, ProjectManager.class).findByTheme(aTheme);
+    }
+
+    @GetMapping("/user{userId}")
+    public List<Project> getProjectByCustomer(@RequestParam String userId) {
+        PLUser plUser = manager(PLUser.class).getById(new Long(userId)).get();
+        return manager(Project.class, ProjectManager.class).findByUser(plUser);
     }
 
 }

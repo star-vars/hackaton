@@ -3,6 +3,7 @@ package com.rozzer.spring.managers;
 import com.google.common.collect.Lists;
 import com.rozzer.manager.CoreObjectManager;
 import com.rozzer.manager.ProjectManager;
+import com.rozzer.model.PLUser;
 import com.rozzer.model.Project;
 import com.rozzer.model.Theme;
 import com.rozzer.spring.repositories.ProjectRepository;
@@ -68,5 +69,10 @@ public class ProjectManagerImpl implements ProjectManager {
     @Override
     public List<Project> findByTheme(Theme theme) {
         return repository.findAllByThemes(theme);
+    }
+
+    @Override
+    public List<Project> findByUser(PLUser user) {
+        return repository.findAllByCustomer(user);
     }
 }

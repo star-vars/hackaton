@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { map, catchError, tap } from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -48,6 +48,11 @@ export class RestService {
 
   getTask(id): Observable<any> {
     return this.http.get(this.endpoint + 'project/' + id).pipe(
+      map(this.extractData));
+  }
+
+  getTaskByUser(id): Observable<any> {
+    return this.http.get(this.endpoint + 'project/user?userId=' + id).pipe(
       map(this.extractData));
   }
 /*
