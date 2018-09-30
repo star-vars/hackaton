@@ -1,6 +1,7 @@
 package com.rozzer.controller;
 
 
+import com.google.common.base.Strings;
 import com.google.gson.Gson;
 import com.rozzer.controller.common.EntityController;
 import com.rozzer.manager.CoreObjectManager;
@@ -9,6 +10,7 @@ import com.rozzer.model.Project;
 import com.rozzer.model.Theme;
 import com.rozzer.session.SessionData;
 import org.eclipse.egit.github.core.Repository;
+import org.eclipse.egit.github.core.client.RequestException;
 import org.eclipse.egit.github.core.service.RepositoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -53,8 +55,14 @@ public class ProjectController implements EntityController<Project> {
     @RequestMapping(method = RequestMethod.PUT)
     public Project update(@RequestBody Project object) {
         try {
-            RepositoryService repositoryService = new RepositoryService();
-            Repository repository = repositoryService.getRepository(sessionData.getUser().getLogin(), object.getRepo());
+            if (Strings.isNullOrEmpty(object.getRepo()) || Strings.isNullOrEmpty(object.getName())) {
+                throw new RuntimeException("Illegal field data");
+            }
+            RepositoryService repositoryService = new RepositoryService(sessionData.getGhClient());
+            Repository repository = null;
+            try {
+                repository = repositoryService.getRepository(sessionData.getUser().getLogin(), object.getRepo());
+            } catch (RequestException ignored) {}
             if (repository == null) {
                 repository = repositoryService.createRepository(new Repository().setName(object.getRepo()));
             }
