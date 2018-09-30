@@ -6,6 +6,7 @@ import com.rozzer.manager.Manager;
 import com.rozzer.model.Comment;
 import com.rozzer.spring.repositories.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -34,8 +35,13 @@ public class CommentManager implements Manager<Comment> {
     }
 
     @Override
-    public List<Comment> getAllByPage(int page){
+    public List<Comment> getAllByPage(Pageable page){
         throw new NotImplementedException();
+    }
+
+    @Override
+    public long countAll() {
+        return repository.count();
     }
 
     @Override

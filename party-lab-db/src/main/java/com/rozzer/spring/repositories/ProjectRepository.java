@@ -1,8 +1,10 @@
 package com.rozzer.spring.repositories;
 
+import com.rozzer.model.Case;
 import com.rozzer.model.PLUser;
 import com.rozzer.model.Project;
 import com.rozzer.model.Theme;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;

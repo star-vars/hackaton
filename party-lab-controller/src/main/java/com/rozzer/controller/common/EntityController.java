@@ -1,5 +1,8 @@
 package com.rozzer.controller.common;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+
 import java.util.List;
 
 public interface EntityController<T> {
@@ -9,5 +12,9 @@ public interface EntityController<T> {
     T read(String id);
     T update(T object);
     void delete(T object);
+
+    public static Pageable createPage(int page, int size) {
+        return PageRequest.of(page - 1, size);
+    }
 
 }

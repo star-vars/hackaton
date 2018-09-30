@@ -10,6 +10,7 @@ import com.rozzer.model.UserProject;
 import com.rozzer.spring.repositories.UserProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,8 +36,13 @@ public class UserProjectManagerImpl implements UserProjectManager {
         return Lists.newArrayList(repository.findAll());
     }
 
-    public List<UserProject> getAllByPage(int page){
-        return Lists.newArrayList(repository.findAll(new PageRequest(page, 4)));
+    public List<UserProject> getAllByPage(Pageable page){
+        return Lists.newArrayList(repository.findAll(page));
+    }
+
+    @Override
+    public long countAll() {
+        return repository.count();
     }
 
     @Override

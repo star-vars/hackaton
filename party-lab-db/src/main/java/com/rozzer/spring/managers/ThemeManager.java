@@ -6,6 +6,7 @@ import com.rozzer.manager.Manager;
 import com.rozzer.model.Theme;
 import com.rozzer.spring.repositories.ThemeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -33,8 +34,13 @@ public class ThemeManager implements Manager<Theme> {
         return Lists.newArrayList(repository.findAll());
     }
 
-    public List<Theme> getAllByPage(int page){
+    public List<Theme> getAllByPage(Pageable page){
         throw new NotImplementedException();
+    }
+
+    @Override
+    public long countAll() {
+        return repository.count();
     }
 
     @Override

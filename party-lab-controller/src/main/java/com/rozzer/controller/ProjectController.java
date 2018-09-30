@@ -12,11 +12,13 @@ import com.rozzer.model.PLUser;
 import com.rozzer.model.Project;
 import com.rozzer.model.ProjectStructure;
 import com.rozzer.model.Theme;
+import com.rozzer.service.ListResult;
 import com.rozzer.session.SessionData;
 import org.eclipse.egit.github.core.Repository;
 import org.eclipse.egit.github.core.client.RequestException;
 import org.eclipse.egit.github.core.service.RepositoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -39,9 +41,8 @@ public class ProjectController implements EntityController<Project> {
     }
 
     @RequestMapping(value = "/all/{page}", method = RequestMethod.GET)
-    public String getAllByPage(@PathVariable String page) {
-        return "{\"size\": " + manager(Project.class).getAll().size() + ", \"projects\" :" +
-                new Gson().toJson(manager(Project.class).getAllByPage(Integer.valueOf(page))) + "}";
+    public ListResult<Project> getAllByPage(@PathVariable Integer page) {
+        return ListResult.of(manager(Project.class).getAllByPage(EntityController.createPage(page, 4)), manager(Project.class).countAll());
     }
 
     @Override

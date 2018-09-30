@@ -6,6 +6,7 @@ import com.rozzer.manager.Manager;
 import com.rozzer.model.Case;
 import com.rozzer.spring.repositories.CaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -34,8 +35,13 @@ public class CaseManager implements Manager<Case> {
     }
 
     @Override
-    public List<Case> getAllByPage(int page){
+    public List<Case> getAllByPage(Pageable page){
         throw new NotImplementedException();
+    }
+
+    @Override
+    public long countAll() {
+        return repository.count();
     }
 
     @Override

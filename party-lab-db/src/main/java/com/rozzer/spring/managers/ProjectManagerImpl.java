@@ -9,6 +9,7 @@ import com.rozzer.model.Theme;
 import com.rozzer.spring.repositories.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,8 +36,13 @@ public class ProjectManagerImpl implements ProjectManager {
         return Lists.newArrayList(repository.findAll());
     }
 
-    public List<Project> getAllByPage(int page){
-        return Lists.newArrayList(repository.findAll(new PageRequest(page, 4)));
+    public List<Project> getAllByPage(Pageable page){
+        return Lists.newArrayList(repository.findAll(page));
+    }
+
+    @Override
+    public long countAll() {
+        return repository.count();
     }
 
     @Override

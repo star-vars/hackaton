@@ -6,6 +6,7 @@ import com.rozzer.manager.PLUserManager;
 import com.rozzer.model.PLUser;
 import com.rozzer.spring.repositories.PLUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -34,8 +35,13 @@ public class PLUserManagerImpl implements PLUserManager {
     }
 
     @Override
-    public List<PLUser> getAllByPage(int page){
+    public List<PLUser> getAllByPage(Pageable page){
         throw new NotImplementedException();
+    }
+
+    @Override
+    public long countAll() {
+        return repository.count();
     }
 
     @Override

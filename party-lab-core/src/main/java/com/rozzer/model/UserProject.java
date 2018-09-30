@@ -2,11 +2,11 @@ package com.rozzer.model;
 
 import com.rozzer.common.AbstractSaved;
 import com.rozzer.common.WorkStatus;
-import org.springframework.data.annotation.Transient;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 import java.util.List;
 
 @Entity(name = "user_projects")

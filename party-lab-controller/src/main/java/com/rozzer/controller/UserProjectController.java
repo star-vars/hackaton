@@ -10,6 +10,7 @@ import com.rozzer.manager.UserProjectManager;
 import com.rozzer.model.Project;
 import com.rozzer.model.Theme;
 import com.rozzer.model.UserProject;
+import com.rozzer.service.ListResult;
 import com.rozzer.session.SessionData;
 import org.eclipse.egit.github.core.Repository;
 import org.eclipse.egit.github.core.RepositoryId;
@@ -39,9 +40,8 @@ public class UserProjectController implements EntityController<UserProject> {
     }
 
     @RequestMapping(value = "/all/{page}", method = RequestMethod.GET)
-    public String getAllByPage(@PathVariable String page) {
-        return "{\"size\": " + manager(Project.class).getAll().size() + ", \"userprojects\" :" +
-                new Gson().toJson(manager(Project.class).getAllByPage(Integer.valueOf(page))) +"}";
+    public ListResult<UserProject> getAllByPage(@PathVariable Integer page) {
+        return ListResult.of(manager(UserProject.class).getAllByPage(EntityController.createPage(page, 4)), manager(UserProject.class).countAll());
     }
 
     @RequestMapping(value = "pick/{projectId}", method = RequestMethod.GET)
