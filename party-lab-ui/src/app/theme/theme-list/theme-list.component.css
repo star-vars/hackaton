@@ -1,3 +1,32 @@
+@media screen and (max-width: 599px) {
+  task-view-min, .add_category_button {
+      height: 20%;
+      padding: 5px !important;
+  }
+}
+
+@media screen and (min-width: 600px) {
+   task-view-min, .add_category_button{
+      height: 200px;
+      margin-bottom: 10px;
+   }
+}
+
+.add_category_button{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.add_category_button > span{
+   margin: 0;
+}
+
+task-view-min:hover{
+  background-image: linear-gradient(to right, #DDDDDD, #FFFFFF);
+  border-width: solid black 2px !important;
+}
+
 example-large-box {
   display: flex;
   align-items: center;

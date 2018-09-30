@@ -1,18 +1,5 @@
-<table class="table">
-  <tbody *ngFor="let task of tasks.tasks">
-    <!--tr *ngIf=" setPrevTheme(task.theme) " (click)="showOrHide(task.theme.name)" class="bg-light">
-      <td> {{ task.theme.name }} </td>
-      <td></td>
-    </tr>
-    <tr class="{{ 'theme_' + task.theme.name.toLowerCase().replace(' ', '_').trim() }}"-->
-    <tr>
-      <td>
-        <a [routerLink]="['/task/', task.id]">{{ task.name }}</a>
-      </td>
-      <td> {{ task.desc }} </td>
-    </tr>
-  </tbody>
-</table>
-
-
-
+<div class="container">
+  <div class="row">
+    <task-view-min *ngFor="let task of tasks.tasks" [task]="task"  class="col-sm-3"></task-view-min>
+  </div>
+</div>
