@@ -11,3 +11,8 @@ example-large-box {
   height: 300px;
   width: 300px;
 }
+
+.example-user-box {
+  height: 50px;
+  width: 100px;
+}
