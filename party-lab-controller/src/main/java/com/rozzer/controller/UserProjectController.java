@@ -1,5 +1,6 @@
 package com.rozzer.controller;
 
+import com.rozzer.checks.Check;
 import com.rozzer.checks.CheckManager;
 import com.rozzer.checks.result.CheckResult;
 import com.rozzer.common.WorkStatus;
@@ -107,7 +108,7 @@ public class UserProjectController implements EntityController<UserProject> {
                 .findByUser(sessionData.getUser());
     }
 
-    @RequestMapping(value = "projectPhases/{projectId}")
+    @RequestMapping(value = "checkProjectPhases/{projectId}")
     public Map<String, CheckResult> checkProjectPhases(@PathVariable Long projectId) {
         Optional<UserProject> project = manager(UserProject.class).getById(projectId);
         Map<String, CheckResult> results = new HashMap<>();
@@ -117,6 +118,15 @@ public class UserProjectController implements EntityController<UserProject> {
         checkManager.getChecks(project.get())
                 .forEach(check -> results.put(check.getId(), check.performCheck(sessionData)));
         return results;
+    }
+
+    @RequestMapping(value = "projectPhases/{projectId}")
+    public Collection<Check> getProjectPhases(@PathVariable Long projectId) {
+        Optional<UserProject> project = manager(UserProject.class).getById(projectId);
+        if (!project.isPresent()) {
+            return Collections.emptyList();
+        }
+        return checkManager.getChecks(project.get());
     }
 
     @GetMapping("/theme/{theme}")

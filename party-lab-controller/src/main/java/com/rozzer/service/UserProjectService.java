@@ -31,10 +31,10 @@ public class UserProjectService {
 
     public void collectUserProjectCases(UserProject project, SessionData sessionData) {
         try {
+            project.setUserCases(new ArrayList<>());
             ContentsService contentsService = new ContentsService(sessionData.getGhClient());
             RepositoryId repoId = RepositoryId.create(sessionData.getUser().getLogin(), project.getRepo());
             List<RepositoryContents> contents = contentsService.getContents(repoId, ProjectStructure.TEST_CASES_FOLDER);
-            project.setUserCases(new ArrayList<>());
             contents.forEach(repositoryContents -> {
                 Case tCase = new Case();
                 tCase.setType(CaseType.TEST_CASE);

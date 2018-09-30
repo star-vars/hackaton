@@ -8,6 +8,19 @@
       <div class="row">
         <h2><a [href]="project.repoUrl">Open GitHub repository</a> </h2>
       </div>
+      <div class="row">
+        <div class="container-fluid">
+          <div class="row" *ngFor="let check of checks">
+            <div class="col-md-10">
+              {{check.description}}
+            </div>
+            <div class="col-md-2">
+              <span *ngIf="checkResults[check.id].name === 'Passed'">OK</span>
+              <span *ngIf="checkResults[check.id].name !== 'Passed'">NOK</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="col-sm-6">
       <div class="row" *ngFor="let comment of comments">

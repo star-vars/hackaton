@@ -15,6 +15,8 @@ export class StartedProjectComponent implements AfterViewInit {
 
   project: StartedProjectModel;
   comments: Array<CommentModel>;
+  checks: Array<any>;
+  checkResults: {};
 
   constructor(private startedProjectService: StartedProjectService,
               private commentService: CommentService,
@@ -28,7 +30,9 @@ export class StartedProjectComponent implements AfterViewInit {
         this.project = value;
         this.commentService.listByProject(this.project.project.id).subscribe((value : Array<CommentModel>) => {
           this.comments = value;
-        })
+        });
+        this.startedProjectService.checks(params['id']).subscribe(checks => this.checks = checks);
+        this.startedProjectService.checksStatus(params['id']).subscribe(results => this.checkResults = results);
       });
     });
   }
