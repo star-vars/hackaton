@@ -79,8 +79,8 @@ public class UserProjectController implements EntityController<UserProject> {
 
     @Override
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
-    public UserProject read(@PathVariable String id) {
-        return manager(UserProject.class).getById(new Long(id)).orElse(new UserProject());
+    public UserProject read(@PathVariable Long id) {
+        return manager(UserProject.class).getById(id).orElse(new UserProject());
     }
 
     @Override

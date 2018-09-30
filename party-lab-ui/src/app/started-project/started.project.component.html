@@ -3,14 +3,22 @@
     <div class="col-sm-6">
       <div class="row">
         <div class="col-sm-3"><h2><strong>Project name:</strong></h2></div>
-        <div class="col-sm-9"><strong>{{project.name}}</strong></div>
+        <div class="col-sm-9"><strong>{{project.project.name}}</strong></div>
       </div>
       <div class="row">
         <h2><a [href]="project.repoUrl">Open GitHub repository</a> </h2>
       </div>
     </div>
     <div class="col-sm-6">
-
+      <div class="row" *ngFor="let comment of comments">
+        <div class="col-md-3"><img src="{{comment.user.avatarUrl}}"/></div>
+        <div class="col-md-9">
+          <div class="row">
+            <strong>{{comment.user.name}}</strong> <span>{{format(comment.datetime)}}</span>
+          </div>
+          <div class="row">{{comment.text}}</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

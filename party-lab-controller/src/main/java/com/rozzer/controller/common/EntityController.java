@@ -9,7 +9,7 @@ public interface EntityController<T> {
 
     List<T> getAll();
     T create();
-    T read(String id);
+    T read(Long id);
     T update(T object);
     void delete(T object);
 

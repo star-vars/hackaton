@@ -44,7 +44,6 @@ public class LoginController {
             UserService service = new UserService(sessionData.getGhClient());
             User ghUser = service.getUser();
             String login = ghUser.getLogin();
-            String name = ghUser.getName();
             String email = ghUser.getEmail();
             if (Strings.isNullOrEmpty(email)) {
                 List<String> emails = service.getEmails();
@@ -53,11 +52,14 @@ public class LoginController {
                 }
             }
             String finalEmail = email;
+            String name = ghUser.getName();
+            String avatarUrl = ghUser.getAvatarUrl();
             PLUser plUser = manager(PLUser.class, PLUserManager.class).getByLogin(login).orElseGet(() -> {
                 PLUser user = manager(PLUser.class).create();
                 user.setName(name);
                 user.setLogin(login);
                 user.setMail(finalEmail);
+                user.setAvatarUrl(avatarUrl);
                 manager(PLUser.class).save(user);
                 return user;
             });

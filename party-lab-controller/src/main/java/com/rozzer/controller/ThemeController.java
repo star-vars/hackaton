@@ -30,8 +30,8 @@ public class ThemeController implements EntityController<Theme> {
 
     @Override
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
-    public Theme read(@PathVariable String id) {
-        return manager(Theme.class).getById(new Long(id)).orElse(new Theme());
+    public Theme read(@PathVariable Long id) {
+        return manager(Theme.class).getById(id).orElse(new Theme());
     }
 
     @Override

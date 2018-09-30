@@ -1,6 +1,7 @@
 package com.rozzer.spring.managers;
 
 import com.google.common.collect.Lists;
+import com.rozzer.manager.CommentManager;
 import com.rozzer.manager.CoreObjectManager;
 import com.rozzer.manager.Manager;
 import com.rozzer.model.Comment;
@@ -14,12 +15,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class CommentManager implements Manager<Comment> {
+public class CommentManagerImpl implements CommentManager {
 
     private CommentRepository repository;
 
     @Autowired
-    public CommentManager(CommentRepository commentRepository) {
+    public CommentManagerImpl(CommentRepository commentRepository) {
         this.repository = commentRepository;
         init();
     }
@@ -69,5 +70,10 @@ public class CommentManager implements Manager<Comment> {
         Comment comment = new Comment();
         repository.save(comment);
         return comment;
+    }
+
+    @Override
+    public List<Comment> getAllByProjectId(Long projectId) {
+        return repository.findAllByProject_Id(projectId);
     }
 }

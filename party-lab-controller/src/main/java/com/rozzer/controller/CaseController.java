@@ -29,8 +29,8 @@ public class CaseController implements EntityController<Case> {
 
     @Override
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
-    public Case read(@PathVariable String id) {
-        return manager(Case.class).getById(new Long(id)).orElse(new Case());
+    public Case read(@PathVariable Long id) {
+        return manager(Case.class).getById(id).orElse(new Case());
     }
 
     @Override

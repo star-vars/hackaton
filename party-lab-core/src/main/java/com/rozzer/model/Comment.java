@@ -20,6 +20,9 @@ public class Comment extends AbstractSaved {
     @OneToMany(fetch = FetchType.LAZY)
     private Set<PLUser> likers = Sets.newHashSet();
 
+    @ManyToOne
+    private Project project;
+
     public Comment() {
     }
 

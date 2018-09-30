@@ -11,6 +11,7 @@ public class PLUser extends AbstractSaved {
     private String mail;
     private Role role;
     private String login;
+    private String avatarUrl;
 
     public PLUser() {
     }
@@ -43,4 +44,11 @@ public class PLUser extends AbstractSaved {
         this.login = login;
     }
 
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+    }
 }

@@ -1,7 +1,10 @@
 import {AfterViewInit, Component} from "@angular/core";
-import {StartedProjectService} from "./service/started.project.service";
+import {StartedProjectService} from "../service/started.project.service";
 import {ActivatedRoute} from "@angular/router";
-import {StartedProjectModel} from "./model/started.project.model";
+import {StartedProjectModel} from "../model/started.project.model";
+import {CommentService} from "../service/comment.service";
+import {CommentModel} from "../model/comment.model";
+import * as moment from "moment";
 
 @Component({
   selector: 'started-project',
@@ -11,8 +14,10 @@ import {StartedProjectModel} from "./model/started.project.model";
 export class StartedProjectComponent implements AfterViewInit {
 
   project: StartedProjectModel;
+  comments: Array<CommentModel>;
 
   constructor(private startedProjectService: StartedProjectService,
+              private commentService: CommentService,
               private route: ActivatedRoute) {
 
   }
@@ -21,8 +26,15 @@ export class StartedProjectComponent implements AfterViewInit {
     this.route.params.subscribe(params => {
       this.startedProjectService.one(params['id']).subscribe((value : StartedProjectModel) => {
         this.project = value;
-      })
+        this.commentService.listByProject(this.project.project.id).subscribe((value : Array<CommentModel>) => {
+          this.comments = value;
+        })
+      });
     });
+  }
+
+  format(date: Date) : string {
+    return moment(date).format('MMMM Do YYYY, h:mm:ss');
   }
 
 }

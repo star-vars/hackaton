@@ -29,8 +29,8 @@ public class UserController implements EntityController<PLUser> {
 
     @Override
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
-    public PLUser read(@PathVariable String id) {
-        return manager(PLUser.class).getById(new Long(id)).orElse(new PLUser());
+    public PLUser read(@PathVariable Long id) {
+        return manager(PLUser.class).getById(id).orElse(new PLUser());
     }
 
     @Override

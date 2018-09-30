@@ -8,6 +8,7 @@ export class UserProfile{
   mail: string;
   role: string;
   login : string;
+  avatarUrl: string;
 
   constructor( id:number, name: string, tasks?: Task[], messages?: string[] ){
     this.id = id;
