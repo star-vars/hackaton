@@ -2,7 +2,6 @@ package com.rozzer.controller;
 
 
 import com.google.common.base.Strings;
-import com.google.gson.Gson;
 import com.rozzer.controller.common.EntityController;
 import com.rozzer.gh.ext.NewCommit;
 import com.rozzer.gh.ext.service.UpdatebaleContentsService;
@@ -18,7 +17,6 @@ import org.eclipse.egit.github.core.Repository;
 import org.eclipse.egit.github.core.client.RequestException;
 import org.eclipse.egit.github.core.service.RepositoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -124,14 +122,15 @@ public class ProjectController implements EntityController<Project> {
 
     @GetMapping("/theme/{theme}")
     public List<Project> getProjectByThemes(@PathVariable String theme) {
-        List<Theme> themeList = CoreObjectManager.getInstance().getManager(Theme.class).getByName(theme);
+        List<Theme> themeList = manager(Theme.class).getByName(theme);
         Theme aTheme = themeList.stream().findFirst().orElse(new Theme(theme));
         return manager(Project.class, ProjectManager.class).findByTheme(aTheme);
     }
 
     @GetMapping("/user{userId}")
     public List<Project> getProjectByCustomer(@RequestParam String userId) {
-        PLUser plUser = manager(PLUser.class).getById(new Long(userId)).get();
+        PLUser plUser = manager(PLUser.class).getById(new Long(userId))
+                .orElseThrow(() -> new IllegalArgumentException("User not found by id: " + userId));
         return manager(Project.class, ProjectManager.class).findByUser(plUser);
     }
 
