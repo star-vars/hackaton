@@ -5,7 +5,6 @@ import com.google.common.base.Strings;
 import com.rozzer.controller.common.EntityController;
 import com.rozzer.gh.ext.NewCommit;
 import com.rozzer.gh.ext.service.UpdatebaleContentsService;
-import com.rozzer.manager.CoreObjectManager;
 import com.rozzer.manager.ProjectManager;
 import com.rozzer.model.PLUser;
 import com.rozzer.model.Project;
@@ -13,6 +12,7 @@ import com.rozzer.model.ProjectStructure;
 import com.rozzer.model.Theme;
 import com.rozzer.service.ListResult;
 import com.rozzer.session.SessionData;
+import org.eclipse.egit.github.core.CommitUser;
 import org.eclipse.egit.github.core.Repository;
 import org.eclipse.egit.github.core.client.RequestException;
 import org.eclipse.egit.github.core.service.RepositoryService;
@@ -59,6 +59,7 @@ public class ProjectController implements EntityController<Project> {
     @RequestMapping(method = RequestMethod.PUT)
     public Project update(@RequestBody Project object) {
         try {
+            object.setCustomer(sessionData.getUser());
             if (Strings.isNullOrEmpty(object.getRepo()) || Strings.isNullOrEmpty(object.getName())) {
                 throw new RuntimeException("Illegal field data");
             }
@@ -72,42 +73,67 @@ public class ProjectController implements EntityController<Project> {
                 repository = repositoryService.createRepository(new Repository().setName(object.getRepo()));
             }
             object.setRepoUrl(repository.getUrl());
-            UpdatebaleContentsService contentsService = new UpdatebaleContentsService(sessionData.getGhClient());
-            contentsService.createFile(repository,
-                    ProjectStructure.TEST_CASES_FOLDER + "/.gitkeep",
-                    new NewCommit()
-                            .setContent(Base64.getEncoder().encodeToString("".getBytes()))
-                            .setMessage("Auto-create test cases folder")
-            );
-            contentsService.createFile(repository,
-                    ProjectStructure.DESIGN_FOLDER + "/.gitkeep",
-                    new NewCommit()
-                            .setContent(Base64.getEncoder().encodeToString("".getBytes()))
-                            .setMessage("Auto-create design folder")
-            );
-            contentsService.createFile(repository,
-                    ProjectStructure.ARCHITECTURE_FOLDER + "/.gitkeep",
-                    new NewCommit()
-                            .setContent(Base64.getEncoder().encodeToString("".getBytes()))
-                            .setMessage("Auto-create architecture folder")
-            );
-            contentsService.createFile(repository,
-                    ProjectStructure.SRC_MAIN_FOLDER + "/.gitkeep",
-                    new NewCommit()
-                            .setContent(Base64.getEncoder().encodeToString("".getBytes()))
-                            .setMessage("Auto-create sources folder")
-            );
-            contentsService.createFile(repository,
-                    ProjectStructure.SRC_TESTS_FOLDER + "/.gitkeep",
-                    new NewCommit()
-                            .setContent(Base64.getEncoder().encodeToString("".getBytes()))
-                            .setMessage("Auto-create autotests folder")
-            );
-            contentsService.createFile(repository, "README.md",
-                    new NewCommit()
-                            .setContent(Base64.getEncoder().encodeToString("This is readme file with sample task description".getBytes()))
-                            .setMessage("Auto-create readme folder")
-            );
+//            UpdatebaleContentsService contentsService = new UpdatebaleContentsService(sessionData.getGhClient());
+//            contentsService.createFile(repository,
+//                    ProjectStructure.TEST_CASES_FOLDER + "/.gitkeep",
+//                    new NewCommit()
+//                            .setContent(Base64.getEncoder().encodeToString("".getBytes()))
+//                            .setMessage("Auto-create test cases folder")
+//                            .setCommitter(new CommitUser().setName(sessionData.getUser().getLogin())
+//                                    .setEmail(sessionData.getUser().getMail()))
+//                            .setAuthor(new CommitUser().setName(sessionData.getUser().getLogin())
+//                                    .setEmail(sessionData.getUser().getMail()))
+//            );
+//            contentsService.createFile(repository,
+//                    ProjectStructure.DESIGN_FOLDER + "/.gitkeep",
+//                    new NewCommit()
+//                            .setContent(Base64.getEncoder().encodeToString("".getBytes()))
+//                            .setMessage("Auto-create design folder")
+//                            .setCommitter(
+//                                    new CommitUser().setName(sessionData.getUser().getLogin())
+//                                            .setEmail(sessionData.getUser().getMail()))
+//                            .setAuthor(new CommitUser().setName(sessionData.getUser().getLogin())
+//                                    .setEmail(sessionData.getUser().getMail()))
+//            );
+//            contentsService.createFile(repository,
+//                    ProjectStructure.ARCHITECTURE_FOLDER + "/.gitkeep",
+//                    new NewCommit()
+//                            .setContent(Base64.getEncoder().encodeToString("".getBytes()))
+//                            .setMessage("Auto-create architecture folder")
+//                            .setCommitter(new CommitUser().setName(sessionData.getUser().getLogin())
+//                                    .setEmail(sessionData.getUser().getMail()))
+//                            .setAuthor(new CommitUser().setName(sessionData.getUser().getLogin())
+//                                    .setEmail(sessionData.getUser().getMail()))
+//            );
+//            contentsService.createFile(repository,
+//                    ProjectStructure.SRC_MAIN_FOLDER + "/.gitkeep",
+//                    new NewCommit()
+//                            .setContent(Base64.getEncoder().encodeToString("".getBytes()))
+//                            .setMessage("Auto-create sources folder")
+//                            .setCommitter(new CommitUser().setName(sessionData.getUser().getLogin())
+//                                    .setEmail(sessionData.getUser().getMail()))
+//                            .setAuthor(new CommitUser().setName(sessionData.getUser().getLogin())
+//                                    .setEmail(sessionData.getUser().getMail()))
+//            );
+//            contentsService.createFile(repository,
+//                    ProjectStructure.SRC_TESTS_FOLDER + "/.gitkeep",
+//                    new NewCommit()
+//                            .setContent(Base64.getEncoder().encodeToString("".getBytes()))
+//                            .setMessage("Auto-create autotests folder")
+//                            .setCommitter(new CommitUser().setName(sessionData.getUser().getLogin())
+//                                    .setEmail(sessionData.getUser().getMail()))
+//                            .setAuthor(new CommitUser().setName(sessionData.getUser().getLogin())
+//                                    .setEmail(sessionData.getUser().getMail()))
+//            );
+//            contentsService.createFile(repository, "README.md",
+//                    new NewCommit()
+//                            .setContent(Base64.getEncoder().encodeToString("This is readme file with sample task description".getBytes()))
+//                            .setMessage("Auto-create readme folder")
+//                            .setCommitter(new CommitUser().setName(sessionData.getUser().getLogin())
+//                                    .setEmail(sessionData.getUser().getMail()))
+//                            .setAuthor(new CommitUser().setName(sessionData.getUser().getLogin())
+//                                    .setEmail(sessionData.getUser().getMail()))
+//            );
             return manager(Project.class).save(object);
         } catch (IOException e) {
             throw new RuntimeException(e);

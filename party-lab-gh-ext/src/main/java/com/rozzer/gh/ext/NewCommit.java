@@ -6,10 +6,10 @@ public class NewCommit {
 
     private String message;
     private String content;
-    private String branch;
-    private String sha;
-    private CommitUser committer;
-    private CommitUser author;
+    private String branch = "";
+    private String sha = "";
+    private CommitUser committer = new CommitUser();
+    private CommitUser author = new CommitUser();
 
     public String getMessage() {
         return message;

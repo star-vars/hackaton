@@ -4,6 +4,8 @@ import {ActivatedRoute} from "@angular/router";
 import {UserProfileService} from "./user-profile.service";
 import {RestService} from "../rest.service";
 import {TaskService} from "../task/task.service";
+import {StartedProjectService} from "../service/started.project.service";
+import {StartedProjectModel} from "../model/started.project.model";
 
 declare var $: any;
 
@@ -17,9 +19,13 @@ export class UserProfileComponent implements OnInit {
 
 
   public user: UserProfile;
+  startedProjects : Array<StartedProjectModel>;
 
   constructor(private route: ActivatedRoute, private rest:RestService
-              , private userService: UserProfileService,  private taskService: TaskService) {
+              , private userService: UserProfileService,
+              private taskService: TaskService,
+              private startedProjectService : StartedProjectService
+  ) {
     this.user = this.userService.currentUser;
     var id = this.userService.currentUser.id;
     this.rest.getTaskByUser(id).subscribe((data:any[]) => {
@@ -29,6 +35,7 @@ export class UserProfileComponent implements OnInit {
       data.forEach( element => {
         this.userService.currentUser.tasks.push(this.taskService.parseJSON(element));
       })
+      startedProjectService.listMy().subscribe((value : Array<StartedProjectModel>) => {this.startedProjects = value})
     });
 
 /*    if (this.userService.currentUser.tasks == undefined){
