@@ -13,7 +13,9 @@ export class UserButtonComponent implements OnInit {
 
 
   constructor(private userService: UserProfileService) {
-    this.currentUser = this.userService.currentUser;
+    this.userService.rest.getCurrentUser().subscribe((data:any) => {
+      this.currentUser = this.userService.parseJSON(data);
+    });
   }
 
   ngOnInit() {

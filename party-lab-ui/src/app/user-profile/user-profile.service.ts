@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { UserProfile } from './user-profile.model';
-import { RestService } from '../rest.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import {Injectable} from '@angular/core';
+import {UserProfile} from './user-profile.model';
+import {RestService} from '../rest.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -32,11 +32,10 @@ export class UserProfileService {
         });
   }
 
-    login( login: string ){
-        this.userProfiles.forEach((p: UserProfile) => {
+/*    login( login: string ){
             if (p.name == login) {
+              parseJSON(this.rest.getCurrentUser()
               this.currentUser = p;
             }
-        });
-    }
+    }*/
 }

@@ -32,6 +32,11 @@ export class RestService {
       map(this.extractData));
   }
 
+  getCurrentUser(): Observable<any> {
+    return this.http.get(this.endpoint + 'users/me' ).pipe(
+      map(this.extractData));
+  }
+
   getTasks(): Observable<any> {
     return this.http.get(this.endpoint + 'project/all').pipe(
       map(this.extractData));
@@ -39,6 +44,10 @@ export class RestService {
 
   updateTask(task: any) : Observable<any> {
     return this.http.put(this.endpoint + 'project', task).pipe();
+  }
+
+  createTask() : Observable<any> {
+    return this.http.post(this.endpoint + 'project', null).pipe();
   }
 
   getTasksByPage(page): Observable<any> {

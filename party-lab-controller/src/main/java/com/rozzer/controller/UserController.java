@@ -2,6 +2,8 @@ package com.rozzer.controller;
 
 import com.rozzer.controller.common.EntityController;
 import com.rozzer.model.PLUser;
+import com.rozzer.session.SessionData;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +16,14 @@ import static com.rozzer.controller.common.ControllerHelper.manager;
 @RestController
 @RequestMapping(value = "/api/users")
 public class UserController implements EntityController<PLUser> {
+
+    @Autowired
+    private SessionData sessionData;
+
+    @RequestMapping(value = "/me", method = RequestMethod.GET)
+    public  PLUser getMe(){
+        return sessionData.getUser();
+    }
 
     @Override
     @RequestMapping(value = "/all", method = RequestMethod.GET)
