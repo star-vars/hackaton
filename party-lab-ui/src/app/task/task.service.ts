@@ -24,6 +24,10 @@ export class TaskService {
     return this.rest.updateTask(task);
   }
 
+  getByPage(current_pagec){
+    return [];
+  }
+
 
 
   parseJSON( input: object ){

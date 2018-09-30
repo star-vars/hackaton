@@ -14,25 +14,21 @@ declare var $: any;
 })
 export class UserProfileComponent implements OnInit {
 
-/*  currentTheme: Theme;
-  currentTask: Task;*/
+
 
   public user: UserProfile;
-  private sub: any;
 
   constructor(private route: ActivatedRoute, private rest:RestService
               , private userService: UserProfileService,  private taskService: TaskService) {
 
   }
   ngOnInit() {
-    this.sub = this.route.params.subscribe(params => {
-      this.user = this.userService.parseJSON(this.rest.getUser(params['id']));
-      this.rest.getTaskByUser(this.user.id).subscribe((data:any[]) => {
+    var id = this.userService.currentUser.id;
+      this.rest.getTaskByUser(id).subscribe((data:any[]) => {
         data.forEach( element => {
-          this.user.tasks.push(this.taskService.parseJSON(element));
+          this.userService.currentUser.tasks.push(this.taskService.parseJSON(element));
         })
       })
-    });
   }
 
 /*  popupTheme( action:string, theme: Theme, type: string){
