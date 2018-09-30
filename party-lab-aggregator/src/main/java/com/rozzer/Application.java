@@ -6,8 +6,6 @@ import com.rozzer.common.Role;
 import com.rozzer.common.WorkStatus;
 import com.rozzer.manager.CoreObjectManager;
 import com.rozzer.model.*;
-import com.rozzer.validate.cucumber.CucumberCase;
-import org.json.simple.JSONObject;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -98,7 +96,7 @@ public class Application {
         projects.add(newProject("Some .NET Project", plUsers, comments, themes.stream().filter(theme -> theme.getName().equals("Java")).findAny().get() ));
         projects.add(newProject("Some JAVA2 Project", plUsers, comments, themes.stream().filter(theme -> theme.getName().equals("Java")).findAny().get() ));
 
-        newUserProject(projects.stream().findAny().get(), plUsers.stream().findAny().get(), "hackaton", "https://github.com/star-vars/hackaton", WorkStatus.STARTED);
+        newUserProject(projects.stream().findFirst().get(), plUsers.stream().findAny().get(), "newRepo", "https://github.com/star-vars/newRepo", WorkStatus.STARTED);
         newUserProject(projects.stream().findAny().get(), plUsers.stream().findAny().get(), "hackaton", "https://github.com/star-vars/hackaton", WorkStatus.COMPLETED);
         newUserProject(projects.stream().findAny().get(), plUsers.stream().findAny().get(), "hackaton", "https://github.com/star-vars/hackaton", WorkStatus.FAILED);
         newUserProject(projects.stream().findAny().get(), plUsers.stream().findAny().get(), "hackaton", "https://github.com/star-vars/hackaton", WorkStatus.STARTED);
