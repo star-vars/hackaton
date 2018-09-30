@@ -40,8 +40,8 @@ public class UserProjectManagerImpl implements UserProjectManager {
     }
 
     @Override
-    public void save(UserProject saved) {
-        repository.save(saved);
+    public UserProject save(UserProject saved) {
+        return repository.save(saved);
     }
 
     @Override

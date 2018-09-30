@@ -1,6 +1,6 @@
 <div class="container">
   <div>
-    <button type="button" class="btn btn-primary btn-lg" onclick="createOrUpdate()">
+    <button type="button" class="btn btn-primary btn-lg" (click)="createOrUpdate()">
       <span *ngIf="!canCreate">Update task</span>
       <span *ngIf="canCreate">Create task</span>
     </button>

@@ -50,8 +50,8 @@ public class ProjectController implements EntityController<Project> {
     }
 
     @Override
-    @RequestMapping(method = RequestMethod.PUT)
-    public void update(Project object) {
+    @RequestMapping(value = "", method = RequestMethod.PUT, consumes="application/json")
+    public Project update(Project object) {
         try {
             RepositoryService repositoryService = new RepositoryService();
             Repository repository = repositoryService.getRepository(sessionData.getUser().getLogin(), object.getRepo());
@@ -59,7 +59,7 @@ public class ProjectController implements EntityController<Project> {
                 repository = repositoryService.createRepository(new Repository().setName(object.getRepo()));
             }
             object.setRepoUrl(repository.getUrl());
-            manager(Project.class).save(object);
+            return manager(Project.class).save(object);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

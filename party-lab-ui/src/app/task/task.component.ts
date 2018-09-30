@@ -15,6 +15,7 @@ export class TaskComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private taskService: TaskService) {
+    this.task = new Task(null, "New Task", "New Task");
   }
 
   ngOnInit() {
@@ -24,16 +25,15 @@ export class TaskComponent implements OnInit {
           this.task = p;
         }
       });
-      if (this.task === null) {
-        this.task = new Task(params.id, "New Task", "New Task");
-      }
-      if (this.task.id === -1) {
+      if (this.task.id === null) {
         this.canCreate = true;
       }
     });
   }
 
   public createOrUpdate(): void {
-    this.taskService.updateTask(this.task);
+    this.taskService.updateTask(this.task).subscribe(value => {
+      console.log("task updated");
+    });
   }
 }

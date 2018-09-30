@@ -35,8 +35,8 @@ public class UserController implements EntityController<PLUser> {
 
     @Override
     @RequestMapping(method = RequestMethod.PUT)
-    public void update(PLUser object) {
-        manager(PLUser.class).save(object);
+    public PLUser update(PLUser object) {
+        return manager(PLUser.class).save(object);
     }
 
     @Override

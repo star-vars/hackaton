@@ -39,8 +39,8 @@ public class CaseManager implements Manager<Case> {
     }
 
     @Override
-    public void save(Case saved) {
-        repository.save(saved);
+    public Case save(Case saved) {
+        return repository.save(saved);
     }
 
     @Override
